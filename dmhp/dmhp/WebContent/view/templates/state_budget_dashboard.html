@@ -1,0 +1,182 @@
+
+<div class="container" style="width: 100%">
+	<div class="container" style="margin-top: 0px; width: 100%"></div>
+	<div class="row">
+		<form name="Form_1" class="form-horizontal" role="form" novalidate>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>{{title}} </b>
+  </div>
+  </div>
+				
+				<div class="panel-body">
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-padding-left"
+							for="ReportingMonth">Financial Year</label>
+
+
+				
+						<div class="col-sm-4" >
+							<span class="block input-icon input-icon-right"> <select
+								ng-model="financial_year"
+								ng-options="financial_year for financial_year in yearCount()"
+								ng-change="changeyear(financial_year)"
+								class="form-control">
+
+							</select>
+
+							</span>
+						</div>
+					
+
+
+					</div>
+			
+	<div  class="panel panel-default" >
+						    <div class="panel-heading">
+					           <button id="dashboard_button">Dashboard</button>
+					           <button id="barchart_button">BarChart</button>
+					           <button id="linechart_button">LineChart</button>
+							</div>
+											
+							<div class="tablecontent">
+										<div  class="panel panel-default" >
+											<div class="panel-heading">
+												<strong>Budget Report for Karnataka for a year</strong>
+											</div>
+											
+											<div class="panel-body">
+												<div class="form-group"
+													style="width: 100%; height: auto; overflow-x: scroll;">
+													<table id="state_budget_table" border="1" class="table table-hover" id="cumulativeTable" style= "text-align: center;">
+					                                            
+														<thead>
+															<tr>
+															   <th colspan="2" rowspan="6" style="text-align:center;"><strong>S.NO</strong></th>
+																<th colspan="6" rowspan="3" style="text-align:center;"><strong>District
+																		Hospital</strong></th>
+																<th colspan="6" rowspan="6"style="text-align:center;">Allocations<button class="show_button" id="show_released">+</button></th>
+																<th colspan="8" class="amount_released" style="text-align:center;"> Amount Released</th>
+											                    <th colspan="6" rowspan="6"style="text-align:center;"><button class="hide_button" id="hide_released">-</button> Total Amount Released</th>
+																
+									                            <th colspan="6" rowspan="6"style="text-align:center;">Total Percentage of Released Amount <button class="show_button" id="show_spent">+</button></th>
+																
+																<th colspan="20" class="amount_spent" style="text-align:center;">Amount Spent in..</th>
+															    <th colspan="6" rowspan="6" style="text-align:center;"><button class="hide_button" id="hide_spent">-</button>Total Amount Spent</th>
+												                <th colspan="6" rowspan="6"style="text-align:center;">Total Percentage of Spent Amount</th>
+															    
+																
+														
+															</tr>
+															<tr>
+																
+																<th colspan="2" class="amount_released" style="text-align:center;">Q1</th>
+																<th colspan="2" class="amount_released" style="text-align:center;">Q2</th>
+																<th colspan="2" class="amount_released" style="text-align:center;">Q3</th>
+																<th colspan="2" class="amount_released" style="text-align:center;">Q4</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">Salary</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">Infrastructure</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">Training</th>
+								                                <th colspan="2" class="amount_spent" style="text-align:center;">IEC</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">Targeted_interventions</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">drugs</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">equipments</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">operational_expenses</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">ambulatory_services</th>
+																<th colspan="2" class="amount_spent" style="text-align:center;">miscellaneous_travel_contingency</th>
+					
+																
+																
+															    
+															</tr>
+														
+														
+														</thead>
+					
+														<tbody>
+															<tr ng-repeat="x in records" bgcolor="#d6ffff">
+															
+					                                                <td colspan="2"></td>
+					
+																	<td colspan="6" bgcolor="#ffffff" ><strong>{{x.dhc_name}}</strong></td>
+																	<td  colspan="6" ><strong>{{x.statebudgetmaster.total_amount_budgeted}}</strong></td>
+					                                                <td  class="amount_released" colspan="2" ><strong>{{x.quarter_amount1}}</strong></td>
+					                                                <td class="amount_released" colspan="2" ><strong>{{x.quarter_amount2}}</strong></td>
+					                                                <td  class="amount_released" colspan="2" ><strong>{{x.quarter_amount3}}</strong></td>
+					                                                <td  class="amount_released" colspan="2" ><strong>{{x.quarter_amount4}}</strong></td>
+																	<td colspan="6" ><strong>{{x.quarter_amount1+x.quarter_amount2+x.quarter_amount3+x.quarter_amount4}}</strong></td>
+					 												<td colspan="6" ng-if="x.statebudgetmaster.state_budget_master_id !='0'"><strong>{{(x.quarter_amount1+x.quarter_amount2+x.quarter_amount3+x.quarter_amount4)*100/x.statebudgetmaster.total_amount_budgeted}}%</strong></td>
+					 												<td colspan="6" ng-if="x.statebudgetmaster.state_budget_master_id =='0'"><strong>0%</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.salary}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.infra}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.training}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.iec}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.targeted_interv}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.drugs}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.equipments}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.op_expenses}}</strong></td>
+					                                                <td   class="amount_spent" colspan="2" ><strong>{{x.ambulance_services}}</strong></td>
+					                                                <td  class="amount_spent" colspan="2"  ><strong>{{x.misc_travel_contingency}}</strong></td>
+					                                                <td colspan="6" ><strong>{{x.total_amt_spent}}</strong></td>
+					                                                <td colspan="6" ng-if="x.statebudgetmaster.state_budget_master_id !='0'" ><strong>{{x.total_amt_spent*100/(x.quarter_amount1+x.quarter_amount2+x.quarter_amount3+x.quarter_amount4)}}%</strong></td>
+					                                                <td colspan="6" ng-if="x.statebudgetmaster.state_budget_master_id =='0'"><strong>0%</strong></td>
+					                                                
+					                                            
+					                                                
+															</tr>
+					
+															
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+					</div>
+					<div class="tablecontent">
+									<div class="panel-body">
+					
+										<button type="button" class="btn btn-md btn-primary"
+											ng-click="exportToExcel('#cumulativeTable')">
+											<span class="glyphicon glyphicon-download-alt"></span> Download
+											Excel
+										</button>
+									</div>
+								
+				   </div>	
+					
+					<div id="barchart" class="chartcontent">
+						<div class="panel panel-default" >
+								<div class="panel-body">
+									<div class="form-group" style="width: 100%; height: auto; overflow-x: scroll;">
+											<svg id="svg" width="4500" height="700"></svg>
+											<style>
+												svg rect
+												{
+												fill:grey;
+												}
+												svg text
+												{
+												fill:black;
+												}
+										 </style>
+								   </div>
+							   </div>
+						</div>
+					</div>
+					<div id="linechart" class="chartcontent">
+        <div class="panel panel-default">
+               <div class="panel-body">
+             <div class="form-group" style="width: 100%; height: auto; overflow-x: scroll;">
+   <svg id="svg2" width="5500" height="750"></svg> 
+ 
+                     </div>
+                </div>
+          </div>
+ </div>
+					
+        </div>
+   </div>
+</form>
+</div>
+</div>

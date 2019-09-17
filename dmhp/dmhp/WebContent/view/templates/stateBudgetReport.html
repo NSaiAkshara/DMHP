@@ -1,0 +1,118 @@
+<div class="row">
+ <form name="Form_1" class="form-horizontal" role="form">
+<div class="tab-content">
+
+<div class="panel panel-default">					
+<div class="panel-heading">Buget allocation details </div>
+<div class="panel-body">				  
+				   <div class="form-group">
+                      <label class="col-sm-2 control-label no-padding-right" for="District">District </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                               <select  ng-change="changeMasterData(Financical_year,District_id)" ng-model="District_id"  ng-options="obj for obj in hospitalName_array"  class="form-control">
+                               <option value="">Select District</option>
+                               </select>
+                                <!-- <input type="text" class="form-control"  id="District" name="District" ng-model="District_id" required focus/> -->
+                             
+                            </span>
+                        </div>
+				 <label class="col-sm-2 control-label no-padding-right" for="ReportingMonth">Financial Year</label>
+                       <!-- <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="FinancicalYear" name="FinancicalYear" ng-model="FinancicalYear" required focus/>
+                            </span>
+                        </div> -->
+						
+						<div class="col-sm-4" >
+									<span class="block input-icon input-icon-right"> 
+									
+						<select	ng-model="Financical_year"
+										ng-options="month for month in finacialYear"
+										ng-change="changeMasterData(Financical_year,District_id)"
+										class="form-control"><option value="">Select Financial Year</option>
+
+									</select>
+
+									</span>
+								</div>	
+						
+						
+                    </div>
+					 <div class="form-group">
+                      <label class="col-sm-4 control-label no-padding-right" for="AllocatedBudget">Total Amount budgeted for the period / allocated </label>
+					 
+                       <div class="col-sm-8">
+                           <span class="block input-icon input-icon-right">
+                                <input type="number" class="form-control"  id="AllocatedBudget" name="AllocatedBudget" ng-disabled="disabledTotalAmount" ng-model="AllocatedBudget_state" required focus/>
+                             
+                            </span>
+                        </div>
+						
+			
+                    </div>
+					<div align="center" class="form-group" >
+				
+<table style="width: 60%; " cellspacing="0" cellpadding="0" border="1" class="table table-hover" >
+
+<thead>
+<tr>
+    <th >Quarter/Amount released and date </th>
+    
+    <th>Amount</th>
+    <th>Date</th>
+	<th>Released by</th>
+    <th>Remarks</th>
+	
+	
+</tr>
+</thead>
+<tbody>
+ <tr>
+  
+	<td><input type="text"  class="form-control" name="Q1_Amount" ng-readonly="true"ng-model="form_Q1_details" ng-init="form_Q1_details='Q1'" required focus/></td>								
+    <td> <input type="number"  class="form-control" name="Q1_Amount" ng-model="Amount"  ng-disabled="disabledQ1" required focus/></td>
+    <td><input type="date"   class="form-control" value=""  name="Q_Date" ng-model="release_date"  ng-disabled="disabledQ1" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Releasedby" ng-model="Releasedby"  ng-disabled="disabledQ1" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Remarks" ng-model="Remarks_state" ng-disabled="disabledQ1"  required focus/></td>
+    
+	</tr>
+	<td> <input type="text"  class="form-control" name="Q1_Amount" ng-readonly="true"ng-model="form_Q2_details" ng-init="form_Q2_details='Q2'" required focus/></td>								
+    <td> <input type="number"  class="form-control" name="Q1_Amount" ng-model="Amount_Q2" ng-disabled="disabledQ2"  required focus/></td>
+    <td><input type="date"  class="form-control" value="" name="Q_Date" ng-model="release_date_Q2" ng-disabled="disabledQ2" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Releasedby" ng-model="Releasedby_Q2" ng-disabled="disabledQ2" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Remarks" ng-model="Remarks_state_Q2" ng-disabled="disabledQ2" required focus/></td>
+	<tr>
+	<td> <input type="text"  class="form-control" name="Q1_Amount" ng-readonly="true"ng-model="form_Q3_details" ng-init="form_Q3_details='Q3'" required focus/></td>								
+    <td> <input type="number"  class="form-control" name="Q1_Amount" ng-model="Amount_Q3" ng-disabled="disabledQ3" required focus/></td>
+    <td><input type="date"  class="form-control" value="" name="Q_Date" ng-model="release_date_Q3" ng-disabled="disabledQ3" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Releasedby" ng-model="Releasedby_Q3" ng-disabled="disabledQ3" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Remarks" ng-model="Remarks_state_Q3" ng-disabled="disabledQ3" required focus/></td>
+	</tr>
+	<tr>
+	<td> <input type="text"  class="form-control" name="Q1_Amount" ng-readonly="true"ng-model="form_Q4_details" ng-init="form_Q4_details='Q4'" required focus/></td>								
+    <td> <input type="number"  class="form-control" name="Q1_Amount" ng-model="Amount_Q4" ng-disabled="disabledQ4" required focus/></td>
+    <td><input type="date"  class="form-control" value=""  name="Q_Date" ng-model="release_date_Q4" ng-disabled="disabledQ4" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Releasedby" ng-model="Releasedby_Q4" ng-disabled="disabledQ4" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q_Remarks" ng-model="Remarks_state_Q4" ng-disabled="disabledQ4" required focus/></td>
+	</tr>
+	<td>Cumulative released till date</td>
+    <td colspan="4"> <input type="text"  class="form-control" name="TotalBudgetReleased" ng-model="TotalBudgetReleased" ng-disabled="disabledTotalAmountCum" required focus/></td> 
+	</tr>
+	
+</tbody>
+</table>
+		 <button type="submit"  data-ng-disabled= "submitDisabled"  ng-disabled="submitDis" ng-click="submitStateClick(flag_status)" ng-model="flag_status" ng-init="flag_status = 2" ng-value="2" class=" btn btn-md btn-primary"   > <span class="glyphicon glyphicon-new-window"></span> Submit </button>
+		 <div id="snackbar1">You have submitted <p ng-model="Qdata">{{Qdata}}</p> data successfully...</div>
+	     <div id="snackbar2">You have failed to post <p ng-model="Qdata">{{Qdata}}</p> data</div>			
+					
+				    </div>
+				    </div>
+				
+                     
+ 
+    </div>
+    
+	</div>
+	
+	</form>
+	</div>

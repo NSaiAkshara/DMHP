@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DMHP</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<style>
+th{
+text-align: center;
+}
+
+td{
+text-align: center;
+}
+</style>
+
+<script>
+$( document ).ready(function() {
+
+Disable();
+
+
+  $( "#Name_event" ).change(function () {
+  var  val =  $("#Name_event").val();
+  if(val=='1')
+  {
+  Disable();
+    $("#Event_fromDate").removeAttr('disabled');
+	$("#Event_ToDate").removeAttr('disabled');
+	$("#NoOfParticipants").removeAttr('disabled');
+	$("#Targetgroup").removeAttr('disabled');
+  }
+  else  if(val=='2')
+  {
+Disable();
+	$("#Event_ToDate").removeAttr('disabled');
+	$("#NoOfParticipants").removeAttr('disabled');
+	$("#Targetgroup").removeAttr('disabled');
+  }
+  else  if(val=='3')
+  {
+   Disable();
+   $("#Event_ToDate").removeAttr('disabled');
+   $("#NameOf_Facility").removeAttr('disabled');
+  }
+  
+  else  if(val=='4')
+  {
+   Disable();
+   $("#Event_ToDate").removeAttr('disabled');
+  $("#SpecifyOtherevent").removeAttr('disabled');
+  $("#NoOfParticipants").removeAttr('disabled');
+  }
+  else  if(val=='5')
+  {
+   Disable();
+   $("#Event_ToDate").removeAttr('disabled');
+  $("#SpecifyOtherevent").removeAttr('disabled');
+  }
+  else
+  {
+   Disable();
+  }
+
+});
+});
+
+
+
+
+
+
+function Disable()
+{
+    $("#SpecifyOtherevent").attr('disabled','disabled');
+	$("#Event_fromDate").attr('disabled','disabled');
+	$("#Event_ToDate").attr('disabled','disabled');
+	$("#Targetgroup").attr('disabled','disabled');
+	$("#NoOfParticipants").attr('disabled','disabled');
+	$("#NameOf_Facility").attr('disabled','disabled');
+  }
+</script>
+
+
+</head>
+<body>
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DMHP Data Management</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+               
+			<li class="active"><a href="st_BudgetDetails.html">Budget Allocation Details</a></li>
+				<li ><a href="BudgetDetails.html">Budget Details</a></li>
+				
+				
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" >
+   <div class="container" style="margin-top:90px;">
+		</div>
+ <div class="row">
+      <form name="Form_1" class="form-horizontal" role="form">
+		
+	
+					
+					<div class="panel panel-default">
+					
+				  <div class="panel-heading">Buget allocation details </div>
+				  <div class="panel-body">
+				  
+				  
+				   <div class="form-group">
+                      <label class="col-sm-2 control-label no-padding-right" for="District">District </label>
+					 
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="District" name="District" ng-model="Budget.District" required focus/>
+                             
+                            </span>
+                        </div>
+						
+						
+				 <label class="col-sm-2 control-label no-padding-right" for="FinancicalYear">Financial Year</label>
+					 
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="FinancicalYear" name="FinancicalYear" ng-model="Budget.FinancicalYear" required focus/>
+                             
+                            </span>
+                        </div>
+						
+                    </div>
+					 <div class="form-group">
+                      <label class="col-sm-4 control-label no-padding-right" for="AllocatedBudget">Total Amount budgeted for the period / allocated </label>
+					 
+                       <div class="col-sm-8">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="AllocatedBudget" name="AllocatedBudget" ng-model="Budget.AllocatedBudget" required focus/>
+                             
+                            </span>
+                        </div>
+						
+			
+                    </div>
+										  <div align="center" class="form-group" >
+				
+<table style="width: 90%; " cellspacing="0" cellpadding="0" border="1" class="table table-hover" >
+
+<thead>
+
+
+
+<tr>
+    <th >Quarter/Amount released and date </th>
+    
+    <th>Amount</th>
+    <th>Date</th>
+	<th>Remarks</th>
+	<th>Released by</th>
+    
+	
+	
+</tr>
+
+
+</thead>
+<tbody>
+ <tr>
+    <td>Quarter of a year (Q1)</td>
+    <td> <input type="number"  class="form-control" name="Q1_Amount" ng-model="Budget.Q1_Amount" required focus/></td>
+    <td><input type="date"  class="form-control" name="Q1_Date" ng-model="Budget.Q1_Date" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q1_Remarks" ng-model="Budget.Q1_Remarks" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q1_Releasedby" ng-model="Budget.Q1_Releasedby" required focus/></td>
+    
+	</tr>
+	 <tr>
+    <td>Quarter of a year (Q2)</td>
+    <td> <input type="number"  class="form-control" name="Q2_Amount" ng-model="Budget.Q2_Amount" required focus/></td>
+    <td><input type="date"  class="form-control" name="Q2_Date" ng-model="Budget.Q2_Date" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q2_Remarks" ng-model="Budget.Q2_Remarks" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q2_Releasedby" ng-model="Budget.Q2_Releasedby" required focus/></td>
+    
+	</tr>
+	 <tr>
+    <td>Quarter of a year (Q3)</td>
+    <td> <input type="number"  class="form-control" name="Q3_Amount" ng-model="Budget.Q3_Amount" required focus/></td>
+    <td><input type="date"  class="form-control" name="Q3_Date" ng-model="Budget.Q3_Date" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q3_Remarks" ng-model="Budget.Q3_Remarks" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q3_Releasedby" ng-model="Budget.Q3_Releasedby" required focus/></td>
+    
+	</tr>
+	 <tr>
+    <td>Quarter of a year (Q4)</td>
+    <td> <input type="number"  class="form-control" name="Q4_Amount" ng-model="Budget.Q4_Amount" required focus/></td>
+    <td><input type="date"  class="form-control" name="Q4_Date" ng-model="Budget.Q4_Date" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q4_Remarks" ng-model="Budget.Q4_Remarks" required focus/></td>
+	<td><input type="text"  class="form-control" name="Q4_Releasedby" ng-model="Budget.Q4_Releasedby" required focus/></td>
+    
+	</tr>
+	<td>Cumulative released till date</td>
+    <td colspan="4"> <input type="text"  class="form-control" name="TotalBudgetReleased" ng-model="Budget.TotalBudgetReleased" required focus/></td>
+  
+	</tr>
+	
+</tbody>
+</table>
+					
+					
+				    </div>
+				    </div>
+				
+                     
+ 
+    </div>
+	
+	
+				  
+          <a type="submit"  class="btn btn-sm btn-primary btnSubmit" ng-click="Form1(form1)" data-ng-disabled="Budget.$invalid" > Submit </a> 
+                     
+               	<a class="btn btn-sm btn-primary btnView" >View </a> 
+	</div>	   
+                     
+          
+   
+
+</div> 
+</form>
+</body>
+</html>                                		

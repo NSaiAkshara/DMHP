@@ -1,0 +1,598 @@
+<div class="container" style="width: 100%">
+	<div class="container" style="margin-top: 0px; width: 100%"></div>
+	<div class="row">
+		<form name="Form_1" class="form-horizontal" role="form" novalidate>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>{{title}} </b>
+				</div>
+				<div class="panel-body">
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right"
+							for="ReportingMonth">Reporting for Month and year</label>
+
+
+						<div class="col-sm-2">
+							<span class="block input-icon input-icon-right"> <select
+								ng-model="form_ReportingMonth"
+								ng-options="month for month in monthNames"
+								ng-change="changemonth(form_ReportingMonth)"
+								class="form-control">
+
+							</select>
+
+							</span>
+						</div>
+						<div class="col-sm-2">
+							<span class="block input-icon input-icon-right"> <select
+								ng-model="form_ReportingYear"
+								ng-options=" form_ReportingYear for form_ReportingYear in yearCount()"
+								ng-change="changemonth(form_ReportingMonth)"
+								class="form-control">
+
+							</select>
+
+							</span>
+						</div>
+						<div class="col-sm-2" ng-if="doctorType1 == 'dlp' ">
+							<span class="block input-icon input-icon-right"> 
+							    <select class="form-control" ng-model="form_data_type" ng-change="changeDatatype(form_ReportingMonth,form_ReportingYear,form_data_type)">
+								  <option value="1">MNC</option>
+								  <option value="2">Other Activity</option>
+								  <option value="3">Others</option>  
+								</select>
+							</span>
+						</div>
+                     
+                   <!--   <label class="col-sm-2" for="FaciltyName"> Type of data </label>
+						<div class="col-sm-4">
+							<span class="block input-icon input-icon-right"> <select>
+								  <option value="1">MNC</option>
+								  <option value="2">Other Activity</option>
+								  <option value="3">Others</option>
+								  
+								</select>
+							</span>
+						</div> -->
+
+
+						<label class="col-sm-2 control-label no-padding-right"
+							for="FaciltyName"> Name of the PHC/CHC/TH </label>
+						<div class="col-sm-4">
+							<span class="block input-icon input-icon-right"> <input
+								type="text" class="form-control" ng-disabled="disabledemo"
+								name="FaciltyName" ng-model="form_hospitalName" required />
+							</span>
+						</div>
+					</div>
+					
+					<table border="1" class="table table-hover">
+						<thead>
+							<tr>
+								<th>S.NO</th>
+								<th>NAME</th>
+								<th>STATUS</th>
+								<th ng-if="doctorType1=='dhc'">ACTION</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!--approved Code-->
+							<!--<tr bgcolor="#ff8933" ng-repeat="x in records" ng-if="x.reportStatus =='1'" ng-switch on="x.reportStatus">-->
+							
+							<tr bgcolor="#0f8023" ng-repeat="x in records"
+								ng-if="x.reportStatus =='1'&& x.hospital_report.flag_status==3  ">
+							
+								<td ng-if="x.reportStatus =='1'"><input type="checkbox"
+									name="fancy-checkbox-success" checked
+									ng-click="selectedhospital($event,$index)" autocomplete="off" /></td>
+								<td ng-if="x.hospitalType !='dlp'" for="fancy-checkbox-success"><strong>{{x.hospitalName
+										}}({{x.hospitalType}})</strong></td>
+								<td ng-if="x.hospitalType =='dlp'" for="fancy-checkbox-success"><strong>Manochaitanya</strong></td>
+								<td ng-if="x.hospital_report.flag_status==2">PENDING</td>
+								<td ng-if="x.hospital_report.flag_status==1">SAVED</td>
+								<td ng-if="x.hospital_report.flag_status==3">APPROVED</td>
+								<td ng-if="x.hospital_report.flag_status==4">REJECT</td>
+
+
+								<td ng-if="doctorType1=='dhc'"><button
+										ng-disabled="x.hospital_report.flag_status==3" type="submit"
+										ng-controller="Main"
+										ng-click="approveClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-model="flag_status1" ng-init="flag_status1 = 2"
+										ng-value="2" class=" btn btn-md btn-primary">
+										approve</button>
+									<button type="submit"
+										ng-disabled="x.hospital_report.flag_status==3"
+										ng-click="rejectClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-controller="Main" ng-model="flag_status1"
+										ng-init="flag_status1 = 2" ng-value="2"
+										class=" btn btn-md btn-primary">reject</button></td>
+                            
+							</tr>
+
+							<!--REJECTED Code-->
+							<tr bgcolor="#d32210" ng-repeat="x in records"
+								ng-if="x.reportStatus =='1'&& x.hospital_report.flag_status==4  ">
+								<td ng-if="x.reportStatus =='1'"><input type="checkbox"
+									name="fancy-checkbox-success" checked
+									ng-click="selectedhospital($event,$index)" autocomplete="off" /></td>
+								<td ng-if="x.hospitalType !='dlp'" for="fancy-checkbox-success"><strong>{{x.hospitalName
+										}}({{x.hospitalType}})</strong></td>
+								<td ng-if="x.hospitalType =='dlp'" for="fancy-checkbox-success"><strong>Manochaitanya</strong></td>
+								<td ng-if="x.hospital_report.flag_status==2">PENDING</td>
+								<td ng-if="x.hospital_report.flag_status==1">SAVED</td>
+								<td ng-if="x.hospital_report.flag_status==3">APPROVED</td>
+								<td ng-if="x.hospital_report.flag_status==4">REJECT</td>
+								<td ng-if="doctorType1=='dhc'"><button
+										ng-disabled="x.hospital_report.flag_status==4" type="submit"
+										ng-controller="Main"
+										ng-click="approveClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-model="flag_status1" ng-init="flag_status1 = 2"
+										ng-value="2" class=" btn btn-md btn-primary">
+										approve</button>
+									<button type="submit"
+										ng-disabled="x.hospital_report.flag_status==4"
+										ng-click="rejectClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-controller="Main" ng-model="flag_status1"
+										ng-init="flag_status1 = 2" ng-value="2"
+										class=" btn btn-md btn-primary">reject</button></td>
+
+							</tr>
+							<!--submmited code-->
+
+							<tr bgcolor="#ea6721" ng-repeat="x in records"
+								ng-if="x.reportStatus =='1'&& x.hospital_report.flag_status==2  ">
+								<td ng-if="x.reportStatus =='1'"><input type="checkbox"
+									name="fancy-checkbox-success" checked
+									ng-click="selectedhospital($event,$index)" autocomplete="off" /></td>
+								<td ng-if="x.hospitalType !='dlp'" for="fancy-checkbox-success"><strong>{{x.hospitalName
+										}}({{x.hospitalType}})</strong></td>
+								<td ng-if="x.hospitalType =='dlp'" for="fancy-checkbox-success"><strong>Manochaitanya</strong></td>
+								<td ng-if="x.hospital_report.flag_status==2">PENDING</td>
+								<td ng-if="x.hospital_report.flag_status==1">SAVED</td>
+								<td ng-if="x.hospital_report.flag_status==3">APPROVED</td>
+								<td ng-if="x.hospital_report.flag_status==4">REJECT</td>
+
+
+								<td ng-if="doctorType1=='dhc'"><button type="submit"
+										ng-controller="Main"
+										ng-click="approveClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-model="flag_status1" ng-init="flag_status1 = 2"
+										ng-value="2" class=" btn btn-md btn-primary">
+										approve</button>
+									<button type="submit"
+										ng-click="rejectClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-controller="Main" ng-model="flag_status1"
+										ng-init="flag_status1 = 2" ng-value="2"
+										class=" btn btn-md btn-primary">reject</button></td>
+
+							</tr>
+							<!--SAVED DATA-->
+							<tr bgcolor="#eb9f22" ng-repeat="x in records"
+								ng-if="x.reportStatus =='1'&& x.hospital_report.flag_status==1  ">
+								<td ng-if="x.reportStatus =='1'"><input type="checkbox"
+									name="fancy-checkbox-success" disabled
+									ng-click="selectedhospital($event,$index)" autocomplete="off" /></td>
+								<td ng-if="x.hospitalType !='dlp'" for="fancy-checkbox-success"><strong>{{x.hospitalName
+										}}({{x.hospitalType}})</strong></td>
+								<td ng-if="x.hospitalType =='dlp'" for="fancy-checkbox-success"><strong>Manochaitanya</strong></td>
+								<td ng-if="x.hospital_report.flag_status==2">PENDING</td>
+								<td ng-if="x.hospital_report.flag_status==1">SAVED</td>
+								<td ng-if="x.hospital_report.flag_status==3">APPROVED</td>
+								<td ng-if="x.hospital_report.flag_status==4">REJECT</td>
+								<td ng-if="doctorType1=='dhc'"><button
+										ng-disabled="x.hospital_report.flag_status==1" type="submit"
+										ng-controller="Main"
+										ng-click="approveClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-model="flag_status1" ng-init="flag_status1 = 2"
+										ng-value="2" class=" btn btn-md btn-primary">
+										approve</button>
+									<button type="submit"
+										ng-disabled="x.hospital_report.flag_status==1"
+										ng-click="rejectClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-controller="Main" ng-model="flag_status1"
+										ng-init="flag_status1 = 2" ng-value="2"
+										class=" btn btn-md btn-primary">reject</button></td>
+							</tr>
+
+							<!--Not submmited-->
+							<tr bgcolor="#ffffff" ng-repeat="x in records"
+								ng-if="x.reportStatus =='0'&& !x.hospital_report.flag_status  ">
+								<td><input type="checkbox" name="fancy-checkbox-danger"
+									id="fancy-checkbox-danger" disabled autocomplete="off" /></td>
+								<td ng-if="x.hospitalType !='dlp'" for="fancy-checkbox-success"><strong>{{x.hospitalName
+										}}({{x.hospitalType}})</strong></td>
+								<td ng-if="x.hospitalType =='dlp'" for="fancy-checkbox-success"><strong>Manochaitanya</strong></td>
+
+
+								<td ng-if="!x.hospital_report.flag_status">NOT SUBMMITED</td>
+								<td ng-if="x.hospital_report.flag_status==1">SAVED</td>
+								<td ng-if="x.hospital_report.flag_status==2">PENDING</td>
+								<td ng-if="x.hospital_report.flag_status==3">APPROVED</td>
+								<td ng-if="x.hospital_report.flag_status==4">REJECT</td>
+
+
+
+								<td ng-if="doctorType1=='dhc'"><button
+										ng-disabled="!x.hospital_report.flag_status" type="submit"
+										ng-click="approveClick()" ng-model="flag_status"
+										ng-init="flag_status = 3" ng-value="2"
+										class=" btn btn-md btn-primary">approve</button>
+									<button type="submit"
+										ng-disabled="!x.hospital_report.flag_status"
+										ng-click="rejectClick(x.hospital_report.reportFor_month_year,x.hospital_report.hospital_id,x.hospitalType)"
+										ng-controller="Main" ng-model="flag_status1"
+										ng-init="flag_status1 = 2" ng-value="2"
+										class=" btn btn-md btn-primary">reject</button></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>Cumulative Report for {{title}} </b>
+				</div>
+				<div class="panel-body">
+					<div class="form-group"
+						style="width: 100%; height: auto; overflow-x: scroll;">
+						<table id="cumulativeReport" , cellspacing="0" cellpadding="0"
+							border="1" class="table table-hover">
+							<thead>
+								<tr>
+									<th ng-if="doctorType1 == 'dlp'" rowspan="3">S.NO</th>
+									<th ng-if="doctorType1 == 'dlp'" rowspan="3">Taluka Name</th>
+
+									<th colspan="4">Total No of SMD cases treated during the
+										month</th>
+									<th colspan="4">Total No of CMD treated during the month</th>
+									<th colspan="4">Total No of Alcohol/Drug abuse Cases
+										treated during the month</th>
+									<th colspan="4">No. of cases referred to Higher centers</th>
+									<th colspan="4">No. of Cases of Suicide reported</th>
+									<th colspan="4">Other Psychiatric disorders treated</th>
+
+									<th colspan="4">Other 1 (Epilepsy)</th>
+									<th colspan="4">Other 2 (Intellectual Deficiency)</th>
+									<th colspan="4">Other 3 (Other child mental health
+										problems)</th>
+									<th colspan="4">Others (Other 4 + Other 5)</th>
+
+								</tr>
+								<tr>
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+									<th colspan="2">New Cases</th>
+									<th colspan="2">Old Cases</th>
+
+
+								</tr>
+								<tr>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+									<th>Male</th>
+									<th>Female</th>
+
+								</tr>
+							</thead>
+							<tbody ng-if="doctorType1 == 'dlp'">
+								<tr ng-repeat="x in records">
+									<td>{{$index + 1}}</td>
+									<td>{{x.hospital_report.thc_details}}</td>
+									<td>{{x.hospital_report.new_smd_male}}</td>
+									<td>{{x.hospital_report.new_smd_female}}</td>
+									<td>{{x.hospital_report.old_smd_male}}</td>
+									<td>{{x.hospital_report.old_smd_female}}</td>
+
+									<td>{{x.hospital_report.new_cmd_male}}</td>
+									<td>{{x.hospital_report.new_cmd_female}}</td>
+									<td>{{x.hospital_report.old_cmd_male}}</td>
+									<td>{{x.hospital_report.old_cmd_female}}</td>
+
+									<td>{{x.hospital_report.new_alcohal_male}}</td>
+									<td>{{x.hospital_report.new_alcohal_female}}</td>
+									<td>{{x.hospital_report.old_alcohal_male}}</td>
+									<td>{{x.hospital_report.old_alcohal_female}}</td>
+
+									<td>{{x.hospital_report.new_male_reffered_to_highercenters}}</td>
+									<td>{{x.hospital_report.new_female_reffered_to_highercenters}}</td>
+									<td>{{x.hospital_report.old_male_reffered_to_highercenters}}</td>
+									<td>{{x.hospital_report.old_female_reffered_to_highercenters}}</td>
+
+
+									<td>{{x.hospital_report.new_male_suicidecases}}</td>
+									<td>{{x.hospital_report.new_female_suicidecases}}</td>
+									<td>{{x.hospital_report.old_male_suicidecases}}</td>
+									<td>{{x.hospital_report.old_female_suicidecases}}</td>
+
+									<td>{{x.hospital_report.new_psychiatricdisorders_male}}</td>
+									<td>{{x.hospital_report.new_psychiatricdisorders_female}}</td>
+									<td>{{x.hospital_report.old_psychiatricdisorders_male}}</td>
+									<td>{{x.hospital_report.old_psychiatricdisorders_female}}</td>
+
+
+									<td>{{x.hospital_report.new_o1_male}}</td>
+									<td>{{x.hospital_report.new_o1_female}}</td>
+									<td>{{x.hospital_report.old_o1_male}}</td>
+									<td>{{x.hospital_report.old_o1_female}}</td>
+
+
+									<td>{{x.hospital_report.new_o2_male}}</td>
+									<td>{{x.hospital_report.new_o2_female}}</td>
+									<td>{{x.hospital_report.old_o2_male}}</td>
+									<td>{{x.hospital_report.old_o2_female}}</td>
+
+
+									<td>{{x.hospital_report.new_o3_male}}</td>
+									<td>{{x.hospital_report.new_o3_female}}</td>
+									<td>{{x.hospital_report.old_o3_male}}</td>
+									<td>{{x.hospital_report.old_o3_female}}</td>
+
+
+
+									<td>{{x.hospital_report.new_o4_male + x.hospital_report.new_o5_male}}</td>
+									<td>{{x.hospital_report.new_o4_female + x.hospital_report.new_o5_female}}</td>
+									<td>{{x.hospital_report.old_o4_male + x.hospital_report.old_o5_male}}</td>
+									<td>{{x.hospital_report.old_o4_female + x.hospital_report.old_o5_female}}</td>
+
+
+								</tr>
+
+								<tr for="total">
+									<td colspan="2"><strong>Total</strong></td>
+									<td ng-model="form_SDM_New_Male">{{form_SDM_New_Male}}</td>
+									<td ng-model="form_SDM_New_Female">{{form_SDM_New_Female}}
+									</td>
+									<td ng-model="form_SDM_Old_Male">{{form_SDM_Old_Male}}</td>
+									<td ng-model="form_SDM_Old_Female">
+										{{form_SDM_Old_Female}}</td>
+
+									<td ng-model="form_CMD_New_Male">{{form_CMD_New_Male}}</td>
+									<td ng-model="form_CMD_New_Female">
+										{{form_CMD_New_Female}}</td>
+									<td ng-model="form_CMD_Old_Male">{{form_CMD_Old_Male}}</td>
+									<td ng-model="form_CMD_Old_Female">{{form_CMD_Old_Female}}</td>
+
+									<td ng-model="form_A_D_New_Male">{{form_A_D_New_Male}}</td>
+									<td ng-model="form_A_D_New_Female">{{form_A_D_New_Female}}</td>
+									<td ng-model="form_A_D_Old_Male">{{form_A_D_Old_Male}}</td>
+									<td ng-model="form_A_D_Old_Female">
+										{{form_A_D_Old_Female}}</td>
+
+									<td ng-model="form_HC_New_Male">{{form_HC_New_Male}}</td>
+									<td ng-model="form_HC_New_Female">{{form_HC_New_Female}}</td>
+									<td ng-model="form_HC_Old_Male">{{form_HC_Old_Male}}</td>
+									<td ng-model="form_HC_Old_Female">{{form_HC_Old_Female}}</td>
+
+									<td ng-model="form_Sucide_New_Male">
+										{{form_Sucide_New_Male}}</td>
+									<td ng-model="form_Sucide_New_Female">{{form_Sucide_New_Female}}</td>
+									<td ng-model="form_Sucide_Old_Male">{{form_Sucide_Old_Male}}
+									</td>
+									<td ng-model="form_Sucide_Old_Female">{{form_Sucide_Old_Female}}</td>
+
+									<td ng-model="form_PsyDis_New_Male">{{form_PsyDis_New_Male}}
+									</td>
+									<td ng-model="form_PsyDis_New_Female">{{form_PsyDis_New_Female}}</td>
+									<td ng-model="form_PsyDis_Old_Male">{{form_PsyDis_Old_Male}}
+									</td>
+									<td ng-model="form_PsyDis_Old_Female">
+										{{form_PsyDis_Old_Female}}</td>
+
+									<td>{{form_o1_New_Male}}</td>
+									<td>{{form_o1_New_Female}}</td>
+
+									<td>{{form_o1_Old_Male}}</td>
+									<td>{{form_o1_Old_Female}}</td>
+
+
+									<td>{{form_o2_New_Male}}</td>
+									<td>{{form_o2_New_Female}}</td>
+
+									<td>{{form_o2_Old_Male}}</td>
+									<td>{{form_o2_Old_Female}}</td>
+
+
+									<td>{{form_o3_New_Male}}</td>
+									<td>{{form_o3_New_Female}}</td>
+
+									<td>{{form_o3_Old_Male}}</td>
+									<td>{{form_o3_Old_Female}}</td>
+
+
+									<td>{{form_others_New_Male}}</td>
+									<td>{{form_others_New_Female}}</td>
+
+									<td>{{form_others_Old_Male}}</td>
+									<td>{{form_others_Old_Female}}</td>
+
+								</tr>
+
+
+							</tbody>
+
+							<tbody ng-if="doctorType1 != 'dlp' ">
+								<tr>
+
+
+									<td ng-model="form_SDM_New_Male">{{form_SDM_New_Male}}</td>
+									<td ng-model="form_SDM_New_Female">{{form_SDM_New_Female}}
+									</td>
+									<td ng-model="form_SDM_Old_Male">{{form_SDM_Old_Male}}</td>
+									<td ng-model="form_SDM_Old_Female">
+										{{form_SDM_Old_Female}}</td>
+
+									<td ng-model="form_CMD_New_Male">{{form_CMD_New_Male}}</td>
+									<td ng-model="form_CMD_New_Female">
+										{{form_CMD_New_Female}}</td>
+									<td ng-model="form_CMD_Old_Male">{{form_CMD_Old_Male}}</td>
+									<td ng-model="form_CMD_Old_Female">{{form_CMD_Old_Female}}</td>
+
+									<td ng-model="form_A_D_New_Male">{{form_A_D_New_Male}}</td>
+									<td ng-model="form_A_D_New_Female">{{form_A_D_New_Female}}</td>
+									<td ng-model="form_A_D_Old_Male">{{form_A_D_Old_Male}}</td>
+									<td ng-model="form_A_D_Old_Female">
+										{{form_A_D_Old_Female}}</td>
+
+									<td ng-model="form_HC_New_Male">{{form_HC_New_Male}}</td>
+									<td ng-model="form_HC_New_Female">{{form_HC_New_Female}}</td>
+									<td ng-model="form_HC_Old_Male">{{form_HC_Old_Male}}</td>
+									<td ng-model="form_HC_Old_Female">{{form_HC_Old_Female}}</td>
+
+									<td ng-model="form_Sucide_New_Male">
+										{{form_Sucide_New_Male}}</td>
+									<td ng-model="form_Sucide_New_Female">{{form_Sucide_New_Female}}</td>
+									<td ng-model="form_Sucide_Old_Male">{{form_Sucide_Old_Male}}
+									</td>
+									<td ng-model="form_Sucide_Old_Female">{{form_Sucide_Old_Female}}</td>
+
+									<td ng-model="form_PsyDis_New_Male">{{form_PsyDis_New_Male}}
+									</td>
+									<td ng-model="form_PsyDis_New_Female">{{form_PsyDis_New_Female}}</td>
+									<td ng-model="form_PsyDis_Old_Male">{{form_PsyDis_Old_Male}}
+									</td>
+									<td ng-model="form_PsyDis_Old_Female">
+										{{form_PsyDis_Old_Female}}</td>
+
+									<td>{{form_o1_New_Male}}</td>
+									<td>{{form_o1_New_Female}}</td>
+
+									<td>{{form_o1_Old_Male}}</td>
+									<td>{{form_o1_Old_Female}}</td>
+
+
+									<td>{{form_o2_New_Male}}</td>
+									<td>{{form_o2_New_Female}}</td>
+
+									<td>{{form_o2_Old_Male}}</td>
+									<td>{{form_o2_Old_Female}}</td>
+
+
+									<td>{{form_o3_New_Male}}</td>
+									<td>{{form_o3_New_Female}}</td>
+
+									<td>{{form_o3_Old_Male}}</td>
+									<td>{{form_o3_Old_Female}}</td>
+
+
+									<td>{{form_others_New_Male}}</td>
+									<td>{{form_others_New_Female}}</td>
+
+									<td>{{form_others_Old_Male}}</td>
+									<td>{{form_others_Old_Female}}</td>
+
+
+
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			</fieldset>
+
+
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+
+
+
+					<a href="#reportForms_new" class="btn btn-md btn-primary"
+						role="button"> <span class="glyphicon glyphicon-arrow-left"></span>Back
+					</a>
+
+
+					<button type="button" class="btn btn-md btn-primary"
+						ng-click="exportToExcel('#cumulativeReport')">
+						<span class="glyphicon glyphicon-download-alt"></span> Download
+						Excel
+					</button>
+				</div>
+			</div>
+
+
+
+			</fieldset>
+		</form>
+
+
+	</div>
+
+	<!-- row class ends here  -->
+
+</div>

@@ -1,0 +1,647 @@
+<style>
+th {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
+</style>
+
+<script>
+	$(document).ready(function() {
+
+		$('.btnNext').click(function() {
+			$('.nav-tabs > .active').next('li').find('a').trigger('click');
+		});
+
+		$('.btnPrevious').click(function() {
+			$('.nav-tabs > .active').prev('li').find('a').trigger('click');
+		});
+	});
+</script>
+
+<div class="container" style="width: 100%">
+	<div class="container" style="margin-top: 0px; width: 100%;"></div>
+	<div class="row">
+		<form name="Form_1" class="form-horizontal" role="form">
+			<div  class="tab-content">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading">Report Form-1 (District Mental
+							Health Programme report for {{form_hospitalName}})</div>
+						<div class="panel-body">
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right"
+									for="ReportingMonth">Reporting for Month</label>
+								
+
+								<div class="col-sm-2" ng-if="doctorType1 != 'dlp' ">
+									<span class="block input-icon input-icon-right"> <select
+										ng-model="form_ReportingMonth"
+										ng-options="month for month in monthNames"
+										ng-change="changemonth(form_ReportingMonth,form_ReportingYear)"
+										class="form-control">
+
+									</select>
+
+									</span>
+								</div>
+								
+								<div class="col-sm-2" ng-if="doctorType1 == 'dlp' ">
+									<span class="block input-icon input-icon-right"> 
+									<input type="text" ng-disabled="disabledemo" 
+									 class="form-control"  ng-model="form_ReportingMonth">									
+                                    
+									</span>
+								</div>
+																
+								
+								
+								<div class="col-sm-2" ng-if="doctorType1 != 'dlp' ">
+									<span class="block input-icon input-icon-right"> <select
+										ng-model="form_ReportingYear"
+										ng-options=" form_ReportingYear for form_ReportingYear in yearCount()"
+										ng-change="changemonth(form_ReportingMonth,form_ReportingYear)"
+										class="form-control">
+
+									</select>
+
+									</span>
+								</div>
+								
+								<div class="col-sm-2" ng-if="doctorType1 == 'dlp' ">
+									<span class="block input-icon input-icon-right"> 
+									<input type="text" ng-disabled="disabledemo" 
+									 class="form-control"  ng-model="form_ReportingYear">									
+                                    
+									</span>
+								</div>
+																
+
+
+								<label class="col-sm-2 control-label no-padding-right"
+									for="ReporingDate"> Date of reporting </label>
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> 
+									<input ng-if="form_FacilityType != 'dlp'" type="text" ng-disabled="disabledemo" 
+									 class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ng-model="form_ReportingDate">									
+                                    
+                                    <input ng-if="form_FacilityType == 'dlp'" type="text"  class="form-control"  
+                                    value="{{ date }}"  ng-disabled= "disabledemo" ng-model="form_ReportingDate">	
+									</span>
+								</div>
+								
+								
+							</div>
+
+					
+
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right"
+									for="FacilityType"> Facility Type </label>
+								<div class="col-sm-4">
+
+									<span class="block input-icon input-icon-right"> <input
+										type="text" ng-disabled="disabledemo" class="form-control"
+										name="FacilityType" ng-model="form_FacilityType">
+									</span> <i class="ace-icon fa fa-user"></i>
+								</div>
+								<label class="col-sm-2 control-label no-padding-right"
+									for="District"> District </label>
+								<div class="col-sm-4">
+
+									<span class="block input-icon input-icon-right"> <input
+										type="text" ng-disabled="disabledemo" class="form-control"
+										name="District" ng-model="form_District">
+									</span> <i class="ace-icon fa fa-user"></i>
+
+								</div>
+							</div>
+
+
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right"
+									for="FaciltyName"> Name of the PHC/CHC/TH </label>
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" ng-disabled="disabledemo" class="form-control"
+										name="FaciltyName" ng-model="form_hospitalName" required />
+									</span>
+								</div>
+
+								<label class="col-sm-2 control-label no-padding-right"
+									for="NameOfAdministrative"> Name of the Administrative
+									MO </label>
+					 			<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" class="form-control" name="NameOfAdministrative"
+										ng-model="form_Admname" required />
+									</span>
+								</div>
+								
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right"
+									for="NameOfPharmacist_Nurse"> Name of the report
+									submitting</label>
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" class="form-control" name="NameOfPharmacist_Nurse"
+										ng-model="form_NameOfPharmacist" required />
+									</span>
+								</div>
+								
+								<label class="col-sm-2 control-label no-padding-right"
+									for="Date_Of_Report" ng-if="doctorType1 == 'dlp' ">Date of Report </label>
+								<div class="col-sm-4" ng-if="doctorType1 == 'dlp' ">
+									<span class="block input-icon input-icon-right"> <input
+										type="date" class="form-control" name="form_DateOfReport"
+										ng-model="form_DateOfReport" ng-change = "changedate(form_DateOfReport)" required />
+									</span>
+								</div>
+								
+								
+							</div>
+							
+							
+							<!-- this hidden div tab1 -->
+						<div  class="tab-pane active" ng-style="{'display': form_FacilityType == 'thc'||form_FacilityType == 'dlp'||form_FacilityType == 'phc'?'block':'none'}"  id="tab1">	
+                          <div class="form-group" ng-style="{'display': form_FacilityType == 'dlp'?'block':'none'}">
+								<label class="col-sm-2 control-label no-padding-right"
+									for="form_thclist"> Name of THC</label>
+								<div class="col-sm-2">
+									<span class="block input-icon input-icon-right"> <select
+									    
+										ng-model="form_thc_details"
+										
+										ng-options="obj for obj in hospitalName_array"
+										ng-change="changeTHC(form_thc_details)"
+										class="form-control">
+										<option value="" disabled selected>Select THC name</option>
+									</select>
+								<!--  <input type="hidden" name="Is_mnc" ng-init="Is_mnc=1;" ng-value="Is_mnc"> -->
+									</span>
+								</div>
+							</div>
+							<fieldset  ng-disabled="submitDisabled || disablereport" >
+							<div class="form-group" ng-style="{'display': form_FacilityType == 'dlp'?'block':'none'}">
+								<label class="col-sm-2 control-label no-padding-right">TypeOfData</label>
+								<div class="col-sm-2">
+									<span class="block input-icon input-icon-right"> 
+									<select  ng-model="form_TypeOfData" ng-change="changeDataType(form_TypeOfData)" class="form-control">
+										<option value="" disabled selected>Select TypeOfData</option>
+										<option ng-init="Is_mnc=1;" ng-value="Is_mnc"  ng-selected="form_TypeOfData == 1" > MNC </option>
+										<option ng-init="Is_oa=2;" ng-value="Is_oa" ng-selected="form_TypeOfData == 2" > Other Activity </option>
+										<option ng-init="Is_others=3;" ng-value="Is_others" ng-selected="form_TypeOfData == 3" > Others </option>
+									</select> 
+									</span>	
+								</div>
+								<input type="text" style="width: 172px;height: 30px;border-radius: 5px;" name="Is_others_text"  ng-model="Is_others_text"  ng-disabled="Is_others_text_dis">	
+							</div>
+
+
+
+							
+							<div align="center" class="form-group"
+								style="height: auto; overflow-x: scroll;">
+								<table style="width: 60%;" cellspacing="0" cellpadding="0"
+									border="1" class="table table-hover">
+
+									<thead>
+
+										<tr>
+											<th></th>
+											<th colspan="2">New Cases</th>
+											<th colspan="2">Old Cases</th>
+
+
+
+
+										</tr>
+
+										<tr>
+											<th></th>
+											<th>Male</th>
+											<th>Female</th>
+											<th>Male</th>
+											<th>Female</th>
+
+
+
+										</tr>
+
+
+									</thead>
+									<tbody>
+										<tr>
+
+											<td>Total No of SMD cases treated during the month</td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="SDM_New_Male"
+												ng-model="form_SDM_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="SDM_New_Female"
+												ng-model="form_SDM_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="SDM_Old_Male"
+												ng-model="form_SDM_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="SDM_Old_Female"
+												ng-model="form_SDM_Old_Female" required focus /></td>
+											
+										</tr>
+
+
+										<tr>
+
+											<td>Total No of CMD treated during the month</td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="CMD_New_Male"
+												ng-model="form_CMD_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="CMD_New_Female"
+												ng-model="form_CMD_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="CMD_Old_Male"
+												ng-model="form_CMD_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="CMD_Old_Female"
+												ng-model="form_CMD_Old_Female" required focus /></td>
+											
+										</tr>
+
+										<tr>
+
+											<td>Total No of Alcohol/Drug abuse Cases treated during
+												the month</td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="A_D_New_Male"
+												ng-model="form_A_D_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="A_D_New_Female"
+												ng-model="form_A_D_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="A_D_Old_Male"
+												ng-model="form_A_D_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="A_D_Old_Female"
+												ng-model="form_A_D_Old_Female" required focus /></td>
+											
+										</tr>
+
+
+										
+
+
+										<tr>
+
+											<td>No. of cases referred to Higher centers</td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="HC_New_Male"
+												ng-model="form_HC_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="HC_New_Female"
+												ng-model="form_HC_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="HC_Old_Male"
+												ng-model="form_HC_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="HC_Old_Female"
+												ng-model="form_HC_Old_Female"  required focus /></td>
+										</tr>
+
+										<tr>
+
+											<td>No. of Cases of Suicide attempted reported</td>
+
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="Sucide_New_Male"
+												ng-model="form_Sucide_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="Sucide_New_Female"
+												ng-model="form_Sucide_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="Sucide_Old_Male"
+												ng-model="form_Sucide_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="Sucide_Old_Female"
+												ng-model="form_Sucide_Old_Female" required focus /></td>
+											
+										</tr>
+
+
+
+										<tr>
+											<td>Other 1 (Epilepsy)</td>
+
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other1_New_Male"
+												ng-model="form_other1_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other1_New_Female"
+												ng-model="form_other1_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other1_Old_Male"
+												ng-model="form_other1_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other1_Old_Female"
+												ng-model="form_other1_Old_Female" required focus /></td>
+											
+										</tr>
+
+
+										<tr>
+
+											<td>Other 2 (Intellectual deficiency)</td>
+
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other2_New_Male"
+												ng-model="form_other2_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other2_New_Female"
+												ng-model="form_other2_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other2_Old_Male"
+												ng-model="form_other2_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other2_Old_Female"
+												ng-model="form_other2_Old_Female" required focus /></td>
+											
+										</tr>
+
+										<tr>
+
+											<td>Other 3 (Other Child mental health problems)</td>
+
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other3_New_Male"
+												ng-model="form_other3_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other3_New_Female"
+												ng-model="form_other3_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other3_Old_Male"
+												ng-model="form_other3_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other3_Old_Female"
+												ng-model="form_other3_Old_Female" required focus /></td>
+											
+										</tr>
+
+										<tr>
+
+											<td>Other 4 (To be specify)</td>
+
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other4_New_Male"
+												ng-model="form_other4_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other4_New_Female"
+												ng-model="form_other4_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other4_Old_Male"
+												ng-model="form_other4_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other4_Old_Female"
+												ng-model="form_other4_Old_Female" required focus /></td>
+											
+										</tr>
+
+										<tr>
+
+											<td>Other 5 (To be specify)</td>
+
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other5_New_Male"
+												ng-model="form_other5_New_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other5_New_Female"
+												ng-model="form_other5_New_Female" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other5_Old_Male"
+												ng-model="form_other5_Old_Male" required focus /></td>
+											<td><input type="number" ng-minlength=1 ng-minlength=100
+												class="form-control" name="other5_Old_Female"
+												ng-model="form_other5_Old_Female" required focus /></td>
+											
+										</tr>
+
+
+									</tbody>
+
+
+								</table>
+								
+
+
+
+
+
+
+							</div>
+							</fieldset>
+						</div><!-- this is tab1 end div -->
+					</div>
+					
+					
+					<button type="submit" ng-if="form_FacilityType != 'dhc'" data-ng-disabled = "submitDisabled" ng-click="saveClick()" ng-model="flag_status" ng-init="flag_status = 1" ng-value="1" class=" btn btn-md btn-primary" > <span class="glyphicon glyphicon-new-window"></span> Save </button>
+               		<button type="submit" ng-if="form_FacilityType != 'dhc'" data-ng-disabled= "submitDisabled" ng-click="submitClick()" ng-model="flag_status" ng-init="flag_status = 2" ng-value="2" class=" btn btn-md btn-primary"   > <span class="glyphicon glyphicon-new-window"></span> Submit </button>
+               		<a href="#cumulative" ng-if="form_FacilityType != 'dhc'" class="btn btn-primary" role="button"> View submitted data <span class="glyphicon glyphicon-hand-right"></span></a>
+				
+               		 
+				<div  class="tab-pane active" ng-style="{'display': form_FacilityType == 'dhc'?'block':'none'}"  id="tab2" >
+
+							
+							<div class="panel-heading">DMHP Other details</div>
+							<fieldset  ng-disabled="submitDisabled || disablereport" >
+							<div class="panel-body">
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOfInpatient"> No. of inpatients treated during
+										the month</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control" name="NoOfInpatient"
+											ng-model="form_NoOfInpatient" required focus />
+
+										</span>
+									</div>
+
+
+
+
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOfECTAdmini_DuringTheMonth"> No. of ECT's
+										administered during the month</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control"
+											name="NoOfECTAdmini_DuringTheMonth"
+											ng-model="form_NoOfECTAdmini_DuringTheMonth" required focus />
+
+										</span>
+									</div>
+
+
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NameOfPsychiatrist">Name of the Permanent
+										Psychiatrist working </label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="text" class="form-control" name="NameOfPsychiatrist"
+											ng-model="form_NameOfPsychiatrist" required focus />
+
+										</span>
+									</div>
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NameOfPsychologist"> Name of the Permanent
+										Psychologist working</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="text" class="form-control" name="NameOfPsychologist"
+											ng-model="form_NameOfPsychologist" required focus />
+
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NameOfPsychiatristSW"> Name of the Permanent
+										Psychiatric social worker working</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="text" class="form-control" name="NameOfPsychiatristSW"
+											ng-model="form_NameOfPsychiatristSW" required focus />
+
+										</span>
+									</div>
+
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOFMC_DuringTheMonth"> No. of Manochaitanya
+										clinic's conducted during the month</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control"
+											name="NoOFMC_DuringTheMonth"
+											ng-model="form_NoOFMC_DuringTheMonth" required focus />
+
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOfDisability_MR"> No. of Disability
+										Certificates issued for MR during the month</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control" name="NoOfDisability_MR"
+											ng-model="form_NoOfDisability_MR" required focus />
+
+										</span>
+									</div>
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOfDisability_MI"> No. of Disability
+										Certificates issued for MI during the month</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control" name="NoOfDisability_MI"
+											ng-model="form_NoOfDisability_MI" required focus />
+
+										</span>
+									</div>
+
+
+								</div>
+								
+							<!-- new fields for DHC login -->
+								<div class="form-group">
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOfDisability_HI">No. of houses Identified</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control" name="NoOfDisability_HI"
+											ng-model="no_of_houses_identified" required focus />
+
+										</span>
+									</div>
+									<label class="col-sm-2 control-label no-padding-right"
+										for="NoOfDisability_PI"> No. of patient Identified</label>
+
+									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="number" class="form-control" name="NoOfDisability_PI"
+											ng-model="no_of_patient_identified" required focus />
+
+										</span>
+									</div>
+
+
+								</div>
+							
+								
+							</div>
+							</fieldset>
+						
+
+					<fieldset  ng-disabled="submitDisabled || disablereport" >
+						<div class="panel-heading">Remarks</div>
+						<div class="panel-body">
+							<div class="form-group">
+
+								<div class="col-sm-12">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" class="form-control" placeholder="Type here..."
+										name="Remarks" ng-model="form_Remarks" required /> <!--<textarea type="comment" class="form-control" placeholder="Type here..." name="Sucide_New_Male" ng-model="form2.Sucide_New_Male" required focus/>-->
+										<i class="ace-icon fa fa-user"></i>
+									</span>
+								</div>
+
+
+							</div>
+							
+							
+							
+							
+						</div>
+					
+					</fieldset>
+					
+					<a ng-if="form_FacilityType != 'dhc'" class="btn btn-md btn-primary btnPrevious" href= "#tab1" target="_self" data-toggle="tab">Previous</a>
+					<button type="submit" data-ng-disabled = "submitDisabled" ng-click="saveClick()" ng-model="flag_status" ng-init="flag_status = 1" ng-value="1" class=" btn btn-md btn-primary" > <span class="glyphicon glyphicon-new-window"></span> Save </button>
+               
+               		<button type="submit"  data-ng-disabled= "submitDisabled" ng-click="submitClick()" ng-model="flag_status" ng-init="flag_status = 2" ng-value="2" class=" btn btn-md btn-primary"   > <span class="glyphicon glyphicon-new-window"></span> Submit </button>
+               		<a href="#cumulative" ng-if="form_FacilityType == 'dhc'" class="btn btn-primary" role="button">   View submitted data  <span class="glyphicon glyphicon-hand-right"></span></a>
+				</div>
+			</div><!-- container div -->
+			 <div class="alert alert-success " ng-show="form_submitted">
+              		    <strong>Form {{buttonString}} successfully !!</strong>
+             </div>              
+             <div class="alert alert-danger" " ng-show="form_not_submitted">
+                  	<strong>Form not {{buttonString}}  </strong></div>
+			<div class="form-group">
+				<span class="lbl col-sm-5"> </span>
+				<div class="col-sm-7"></div>
+			</div>
+			</div>
+			</form>
+	</div>
+</div><!-- container end div -->

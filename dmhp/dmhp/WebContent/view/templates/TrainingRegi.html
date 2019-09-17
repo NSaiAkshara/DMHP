@@ -1,0 +1,171 @@
+<!-- <body> -->
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    Brand and toggle get grouped for better mobile display
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DMHP Data Management</a>
+        </div>
+        Collect the nav links, forms, and other content for toggling
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li class=""><a href=".html">Patient Details</a></li>
+				<li class="active"><a href="TrainingRegi.html">Training & Events</a></li>
+				
+				
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" >
+   <div class="container" style="margin-top:90px;">
+		</div>
+ <div class="row">
+      <form name="Form_1" class="form-horizontal" role="form">
+		
+		
+				
+					
+					<div class="panel panel-default">
+					
+				  <div class="panel-heading">Training module registration </div>
+				  <div class="panel-body">
+				  
+				  
+				   <div class="form-group">
+                      <label class="col-sm-2 control-label no-padding-right" for="Name_event">Name of the event </label>
+					 
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+							<select name="Name_event" id="Name_event" ng-model="Training.Name_event"  class="form-control" required focus>
+							<option selected="" value="">(Please select a event)</option>  
+							<option value="1">Training</option>  
+							<option value="2">Targetted intervention</option>  
+							<option value="3">Insection of facilitites</option>  
+							<option value="4">Manochaitanya</option>
+							<option value="5">Specify Other</option>  
+							</select>
+                             
+                            </span>
+                        </div>
+						
+				 <label class="col-sm-2 control-label no-padding-right" for="SpecifyOtherevent">Specify Other</label>
+					 
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="SpecifyOtherevent" name="SpecifyOtherevent" ng-model="Training.SpecifyOtherevent" required focus/>
+                             
+                            </span>
+                        </div>
+						
+                    </div>
+					
+					
+				  
+				   <div class="form-group">
+                      <label class="col-sm-2 control-label no-padding-right" for="Event_fromDate">Date of event (From)</label>
+					  
+					  <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="Date" class="form-control"  id="Event_fromDate"  name="Event_fromDate" ng-model="Training.Event_fromDate" required focus/>
+                             
+                            </span>
+                        </div>
+						
+				 <label class="col-sm-2 control-label no-padding-right" for="Event_ToDate">Date of event (To)</label>
+					 
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="Date" class="form-control" id="Event_ToDate"  name="Event_ToDate" ng-model="Training.Event_ToDate" required focus/>
+                             
+                            </span>
+                        </div>
+						
+                    </div>
+					
+					
+					<div class="form-group">
+					
+					   <label class="col-sm-2 control-label no-padding-right" for="Targetgroup">Target group</label>
+					  
+					  <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="number" class="form-control" id="Targetgroup"  name="Targetgroup" ng-model="Training.Targetgroup" required focus/>
+                             
+                            </span>
+                        </div>
+						
+						
+                      <label class="col-sm-2 control-label no-padding-right" for="NoOfParticipants">Number of participants/Patient</label>
+					  
+					  <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="number" class="form-control" id="NoOfParticipants"  name="NoOfParticipants" ng-model="Training.NoOfParticipants" required focus/>
+                             
+                            </span>
+                        </div>
+				
+						
+                    </div>
+					
+					<div class="form-group">
+					
+						
+				 <label class="col-sm-2 control-label no-padding-right" for="NameOf_Facility">Name of the facility</label>
+					 
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="NameOf_Facility" name="NameOf_Facility" ng-model="Training.NameOf_Facility" required focus/>
+                             
+                            </span>
+                        </div>
+						
+                      <label class="col-sm-2 control-label no-padding-right" for="BriefReport">Brief report (about 150-200 words)</label>
+					  
+					  <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <textarea type="text" class="form-control"  name="BriefReport" ng-model="Training.BriefReport" required focus> </textarea>
+                             
+                            </span>
+                        </div>
+		
+						
+                    </div>
+					
+							<div class="form-group">
+                 
+				 <label class="col-sm-2 control-label no-padding-right" for="NameOf_File1">upload (Images)</label>
+					 
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="file" class="form-control"  name="NameOf_File1" ng-model="Training.NameOf_Facility" required focus/>
+								 <input type="file" class="form-control"  name="NameOf_File2" ng-model="Training.NameOf_Facility" required focus/>
+								  <input type="file" class="form-control"  name="NameOf_File3" ng-model="Training.NameOf_Facility" required focus/>
+                             
+                            </span>
+                        </div>
+						
+                    </div>
+
+				    </div>
+				    </div>
+					<div class="form-group">
+                                <span class="lbl col-sm-5"> </span>
+                                <div class="col-sm-7">
+                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" ng-click="Form1(form1)" data-ng-disabled="Form_1.$invalid">
+                                        Submit
+                                    </button>
+                                </div>
+                    </div>
+                    </div>      
+               </fieldset>
+                     
+                </form>
+	</div>	   
+                     
+    

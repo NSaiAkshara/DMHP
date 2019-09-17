@@ -1,0 +1,179 @@
+ <div class="row">
+      <form name="Form_1" class="form-horizontal"  ng-submit="submitForm(Form_1.$valid)" novalidate role="form" >
+
+					<div class="panel panel-default">
+					
+				  <div class="panel-heading">HR Information </div>
+				  <div class="panel-body">
+				  
+				  
+				   <div class="form-group">
+                      <label class="col-sm-2 control-label no-padding-right" for="Name">Name </label>
+					 
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="Name" ng-disabled="disablefields_1" name="District" ng-model="HRinfo_Name" required focus/>
+                             
+                            </span>
+                        </div>
+						
+						
+				 <label class="col-sm-2 control-label no-padding-right" for="CurrentDesignation">Current Designation</label>
+                        <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">	
+							<select id="CurrentDesignation" name="CurrentDesignation" ng-model="HRinfo_CurrentDesignation" ng-disabled="disablefields_1"   class="form-control" required focus>
+							<option selected="" value="">(Please select a Desingation)</option>  
+							<option value="DHO">DHO</option>  
+							<option value="THO">THO</option>  
+							<option value="Psychitric Nurse">Psychitric Nurse</option>  
+							<option value="Record Keepr">Record Keepr</option>
+							<option value="Clinical psychologist">Clinical psychologist</option>  
+							<option value="Psychitrist">Psychitrist</option>  
+							<option value="Ward Assistant">Ward Assistant</option> 	
+							</select>  
+                            </span>
+                        </div>
+						
+                    </div>
+					 
+				
+  <div class="form-group">
+                      <label class="col-sm-2 control-label no-padding-right" for="Name">Date of Birth </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="date" class="form-control"  id="DateofBirth" name="DateofBirth" ng-disabled="disablefields_1" ng-model="HRinfo_DateofBirth" required focus/>        
+                            </span>
+                        </div>	
+				 <label class="col-sm-2 control-label no-padding-right" for="CurrentDesignation">Email</label>
+			 
+                    <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="email" class="form-control"  id="Email" name="email" ng-disabled="disablefields_1" ng-model="HRinfo_Email" required focus/>
+                                <p ng-show="Form_1.email.$invalid && !Form_1.email.$pristine" style="color:red;" class="help-block">Enter a valid email.</p>
+                            </span>
+                        </div>
+						
+                    </div>
+					
+					  <div class="form-group">
+                   
+					   <label class="col-sm-2 control-label no-padding-right" for="mob1">Contact Detail 1 </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="number" class="form-control"  id="mob1" name="mob1" ng-disabled="disablefields_1" ng-model="HRinfo_mob1" ng-minlength="10" ng-maxlength="10" required focus/>
+                                  <p ng-show="Form_1.mob1.$error.minlength"  style="color:red;" class="help-block">please enter valid Phone number.</p>
+                                  <p ng-show="Form_1.mob1.$error.maxlength" style="color:red;" class="help-block">please enter valid Phone number.</p>
+                            </span>
+                        </div>
+						
+						
+				<label class="col-sm-2 control-label no-padding-right" for="mob2">Contact Details 2 </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="number" class="form-control"  id="mob2" name="mob2" ng-disabled="disablefields_1" ng-model="HRinfo_mob2"  ng-minlength="10" ng-maxlength="10" required focus/>
+                              <p ng-show="Form_1.mob2.$error.minlength"  style="color:red;" class="help-block">please enter valid Phone number.</p>
+                              <p ng-show="Form_1.mob2.$error.maxlength" style="color:red;" class="help-block">please enter valid Phone number.</p>
+                            </span>
+                        </div>
+					
+				    </div>
+					<hr/>
+					<h4>Appointment details</h4>
+					<hr/>
+					<div class="form-group">
+                   
+					   <label class="col-sm-2 control-label no-padding-right" for="1stAppoitment">Date of 1st Appointment </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="Date" class="form-control"  id="1stAppoitment" name="1stAppoitment" ng-disabled="disablefields_1" ng-model="HRinfo_1stAppoitment" required focus/>
+                             
+                            </span>
+                        </div>
+						
+						
+		  <label class="col-sm-2 control-label no-padding-right" for="ContarctRefNo">Contract Ref # </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="ContarctRefNo" ng-disabled="disablefields_1" name="ContarctRefNo" ng-model="HRinfo_ContarctRefNo" required focus/>
+                             
+                            </span>
+                        </div>
+					
+				    </div>
+					
+							  <div class="form-group">
+                   
+					   <label class="col-sm-2 control-label no-padding-right" for="ContractFrom">Current period of contract From </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="Date" class="form-control"  id="ContractFrom" name="ContractFrom" ng-disabled="disablefields_1" ng-model="HRinfo_ContractFrom" required focus/>
+                             
+                            </span>
+                        </div>
+						 <label class="col-sm-2 control-label no-padding-right" for="ContractTo">Current period of contract To </label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="Date" class="form-control"  id="ContractTo" ng-disabled="disablefields_1" name="ContractTo" ng-model="HRinfo_ContractTo" required focus/>
+                             
+                            </span>
+                        </div>
+						
+		
+					
+				    </div>
+					
+						  <div class="form-group">
+                   
+					   <label class="col-sm-2 control-label no-padding-right" for="NameOfFacility">Name Of Facility</label>
+                       <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  id="NameOfFacility" ng-disabled="disablefields_1" name="NameOfFacility" ng-model="HRinfo_NameOfFacility" required focus/>
+                             
+                            </span>
+                        </div>
+						
+						</div>
+		             <!--  <div class="form-group">
+					  
+                       <div class="col-sm-10">
+                       <span class="block input-icon input-icon-right">
+					   <select  ng-model="HRinfo_InchargeTaluka" multiple ng-options="obj for obj in hospitalName_array"  class="form-control"></select>
+					   <!--<input type="checkbox" ng-model="HRinfo_InchargeTaluka" >
+						       
+                         </span>
+                        </div>
+					</div>-->
+					 <!--<div class="form-group">
+					  <div class="col-sm-10"> 
+					 <label class="col-sm-2 control-label no-padding-right" for="InchargeTaluka1">Incharge Taluka's1</label>
+					<div class="col-sm-10" ng-repeat="obj in hospitalName_array">
+                   <input type="checkbox"  name="hospitalName_array[]" value="{{obj}}"  ng-checked="selection.indexOf(obj) > -1"  ng-model="HRinfo_InchargeTaluka.obj"> {{obj}}
+                   </div>
+                  <!-- </div> 
+					</div>-->
+					<div class="form-group">
+					<label style="margin: -11px 0 10px;position: relative;left: 46px;" class=" control-label no-padding-right" for="Remarks">Incharge Taluka's:</label>
+					<div  ng-repeat="fruitName in hospitalName_array">
+                   <p style="margin: -11px 0 10px;position: relative;left: 177px;"> <input type="checkbox"  name="selectedFruits[]" value="{{fruitName}}" ng-disabled="disablefields_1" ng-checked="selection.indexOf(fruitName) > -1" ng-click="toggleSelection(fruitName)"> {{fruitName}}</p>
+                 	</div>		
+	               </div>			
+					
+					
+				    	<div class="form-group">
+					   <label class="col-sm-2 control-label no-padding-right" for="Remarks">Remarks</label>
+                       <div class="col-sm-10">
+                          <input type="text" class="form-control"  id="Remarks" name="Remarks" ng-disabled="disablefields_1" ng-model="HRinfo_Remarks" required focus/>
+                        </div>
+					</div>
+					
+					<button type="submit"  data-ng-disabled= "submitDisabled" ng-click="submitHrData()" ng-model="flag_status"  ng-value="2" class=" btn btn-md btn-primary"   > <span class="glyphicon glyphicon-new-window"></span> Submit </button>
+					<a href="#submittedHrData" class="btn btn-primary" role="button">   View submitted data  <span class="glyphicon glyphicon-hand-right"></span></a>
+					<div id="snackbar1">Data has submitted successfully...</div>
+	                <div id="snackbar2">Data failed to post, All fields are required..</div>
+				    </div>
+				
+                     
+ 
+    </div>
+</form>      
+</div>                         	

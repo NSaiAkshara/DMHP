@@ -1,0 +1,439 @@
+
+<div class="container">
+	<div class="row">
+		<form name="Form_1" class="form-horizontal" role="form">
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="tab1">
+
+
+
+					<div class="panel panel-default">
+
+						<div class="panel-heading">#DistrictName Budget</div>
+						<div class="panel-body">
+
+
+							<div class="form-group">
+								<!-- 	<label class="col-sm-2 control-label no-padding-right"
+										for="District">District </label>
+ -->
+								<!-- 									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="text" class="form-control" id="District"
+											name="District" ng-model="Budget.District" required focus />
+
+										</span>
+									</div>
+ -->
+
+								<label class="col-sm-2 control-label no-padding-right"
+									for="FinancialYear">Financial Year</label>
+
+								<!-- 									<div class="col-sm-4">
+										<span class="block input-icon input-icon-right"> <input
+											type="text" class="form-control" id="FinancicalYear"
+											name="FinancicalYear" ng-model="Budget.FinancicalYear"
+											required focus />
+
+										</span>
+									</div>
+									 -->
+
+								<div class="col-sm-2">
+									<span class="block input-icon input-icon-right"> <select
+										ng-model="form_ReportingYear"
+										ng-options="year for year in yearCount()"
+										ng-change="changemonth(form_ReportingYear)"
+										class="form-control">
+
+									</select>
+
+									</span>
+								</div>
+
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label no-padding-right"
+									for="AllocatedBudget">Total Amount budgeted for the
+									period / allocated </label>
+
+								<div class="col-sm-8">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" class="form-control" id="AllocatedBudget"
+										name="AllocatedBudget" ng-model="Budget.AllocatedBudget"
+										required focus />
+
+									</span>
+								</div>
+
+
+							</div>
+							<div align="center" class="form-group">
+
+								<table style="width: 60%;" cellspacing="0" cellpadding="0"
+									border="1" class="table table-hover">
+
+									<thead>
+
+
+
+										<tr>
+											<th>Quarter/Amount released and date</th>
+
+											<th>Amount</th>
+											<th>Date</th>
+											<th>Released by</th>
+
+
+
+										</tr>
+
+
+									</thead>
+									<tbody>
+										<tr>
+											<td>Quarter of a year (Q1)</td>
+											<td><input type="text" class="form-control"
+												name="Q1_Amount" ng-model="Budget.Q1_Amount" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q1_Date" ng-model="Budget.SDM_New_Female" required
+												focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q1_Releasedby" ng-model="Budget.Q1_Releasedby"
+												required focus /></td>
+
+										</tr>
+										<tr>
+											<td>Quarter of a year (Q2)</td>
+											<td><input type="text" class="form-control"
+												name="Q2_Amount" ng-model="Budget.Q2_Amount" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q2_Date" ng-model="Budget.Q2_Date" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q2_Releasedby" ng-model="Budget.Q2_Releasedby"
+												required focus /></td>
+
+										</tr>
+										<tr>
+											<td>Quarter of a year (Q3)</td>
+											<td><input type="text" class="form-control"
+												name="Q3_Amount" ng-model="Budget.Q3_Amount" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q3_Date" ng-model="Budget.Q3_Date" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q3_Releasedby" ng-model="Budget.Q3_Releasedby"
+												required focus /></td>
+
+										</tr>
+										<tr>
+											<td>Quarter of a year (Q4)</td>
+											<td><input type="text" class="form-control"
+												name="Q4_Amount" ng-model="Budget.Q4_Amount" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q4_Date" ng-model="Budget.Q4_Date" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Q4_Releasedby" ng-model="Budget.Q4_Releasedby"
+												required focus /></td>
+
+										</tr>
+										<td>Cumulative released till date</td>
+										<td colspan="3"><input type="text" class="form-control"
+											name="TotalBudgetReleased"
+											ng-model="Budget.TotalBudgetReleased" required focus /></td>
+
+
+										</tr>
+
+									</tbody>
+								</table>
+
+
+							</div>
+						</div>
+
+
+
+					</div>
+
+				</div>
+
+
+				<div class="tab-pane" id="tab2">
+					<div class="panel panel-default">
+
+						<div class="panel-heading">Buget Expense details</div>
+						<div class="panel-body">
+							<div class="form-group">
+
+								<label class="col-sm-2 control-label no-padding-right"
+									for="ReportingMonth">Reporting for Month</label>
+
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> <input
+										type="month" class="form-control"
+										ng-model="form1.ReportingMonth"
+										value="{{ date | date: 'yyyy/MM/dd' }}" required focus />
+									</span>
+								</div>
+
+
+
+
+								<label class="col-sm-2 control-label no-padding-right"
+									for="ReporingDate"> Date of reporting </label>
+
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> <input
+										type="date" class="form-control" ng-model="form1.ReporingDate"
+										value="{{ date | date: 'yyyy/MM/dd' }}" required focus />
+									</span>
+
+								</div>
+							</div>
+							<div align="center" class="form-group">
+
+								<table style="width: 60%;" cellspacing="0" cellpadding="0"
+									border="1" class="table table-hover">
+
+									<thead>
+
+
+
+										<tr>
+											<th>Amount spent</th>
+
+											<th>During the month</th>
+											<th>Cumulative</th>
+											<th>% spent</th>
+
+
+
+										</tr>
+
+
+									</thead>
+									<tbody>
+										<tr>
+											<td>Head 1 – Salary</td>
+											<td><input type="text" class="form-control"
+												name="DM_Salary" ng-model="Budget.DM_Salary" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Salary" ng-model="Budget.Cumulative_Salary"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Salary" ng-model="Budget.Percentage_Salary"
+												required focus /></td>
+
+										</tr>
+										<tr>
+											<td>Head 2 – Infrastructure</td>
+											<td><input type="text" class="form-control"
+												name="DM_Infrastructure" ng-model="Budget.DM_Infrastructure"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Infrastructure"
+												ng-model="Budget.Cumulative_Infrastructure" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Infrastructure"
+												ng-model="Budget.Percentage_Infrastructure" required focus /></td>
+
+										</tr>
+										<tr>
+											<td>Head 3 – Training</td>
+											<td><input type="text" class="form-control"
+												name="DM_Training" ng-model="Budget.DM_Training" required
+												focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Training"
+												ng-model="Budget.Cumulative_Training" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Training"
+												ng-model="Budget.Percentage_Training" required focus /></td>
+
+										</tr>
+										<tr>
+											<td>Head 4 – IEC</td>
+											<td><input type="text" class="form-control"
+												name="DM_IEC" ng-model="Budget.DM_IEC" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_IEC" ng-model="Budget.Cumulative_IEC"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_IEC" ng-model="Budget.Percentage_IEC"
+												required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Head 5 – Targeted interventions</td>
+											<td><input type="text" class="form-control" name="DM_TI"
+												ng-model="Budget.DM_TI" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_TI" ng-model="Budget.Cumulative_TI"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_TI" ng-model="Budget.Percentage_TI"
+												required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Head 6 – Drugs</td>
+											<td><input type="text" class="form-control"
+												name="DM_Drugs" ng-model="Budget.DM_Drugs" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Drugs" ng-model="Budget.Cumulative_Drugs"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Drugs" ng-model="Budget.Percentage_Drugs"
+												required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Head 7 – Equipments</td>
+											<td><input type="text" class="form-control"
+												name="DM_Equipments" ng-model="Budget.DM_Equipments"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Equipments"
+												ng-model="Budget.Cumulative_Equipments" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Equipments"
+												ng-model="Budget.Percentage_Equipments" required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Head 8 – Operational expenses</td>
+											<td><input type="text" class="form-control"
+												name="DM_OperationalExps"
+												ng-model="Budget.DM_OperationalExps" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_OperationalExps"
+												ng-model="Budget.Cumulative_OperationalExps" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_OperationalExps"
+												ng-model="Budget.Percentage_OperationalExps" required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Head 9 – Ambulatory services</td>
+											<td><input type="text" class="form-control"
+												name="DM_AmbulatorySrv" ng-model="Budget.DM_AmbulatorySrv"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_AmbulatorySrv"
+												ng-model="Budget.Cumulative_AmbulatorySrv" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_AmbulatorySrv"
+												ng-model="Budget.Percentage_AmbulatorySrv" required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Head 10 – Miscellaneous / Travel / Contingency</td>
+											<td><input type="text" class="form-control"
+												name="DM_Miscellaneous" ng-model="Budget.DM_Miscellaneous"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Miscellaneous"
+												ng-model="Budget.Cumulative_Miscellaneous" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Miscellaneous"
+												ng-model="Budget.Percentage_Miscellaneous" required focus /></td>
+
+										</tr>
+
+										<tr>
+											<td>Total</td>
+											<td><input type="text" class="form-control"
+												name="DM_Total" ng-model="Budget.DM_Total" required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Cumulative_Total" ng-model="Budget.Cumulative_Total"
+												required focus /></td>
+											<td><input type="text" class="form-control"
+												name="Percentage_Total" ng-model="Budget.Percentage_Total"
+												required focus /></td>
+										</tr>
+										<tr>
+											<td>Balance remaining</td>
+											<td colspan="3"><input type="text" class="form-control"
+												name="BalanceRemain" ng-model="Budget.BalanceRemain"
+												required focus /></td>
+
+
+										</tr>
+
+									</tbody>
+								</table>
+
+
+							</div>
+
+							<div class="form-group">
+
+								<label class="col-sm-2 control-label no-padding-right" for="DLO">Submitted
+									by(Name of DLO) </label>
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" class="form-control" name="DLO"
+										ng-model="form1.DLO" required focus />
+
+									</span>
+								</div>
+
+
+
+
+
+
+							</div>
+
+
+
+						</div>
+
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">Remarks</div>
+						<div class="panel-body">
+							<div class="form-group">
+
+								<div class="col-sm-12">
+									<span class="block input-icon input-icon-right"> <input
+										type="text" class="form-control" placeholder="Type here..."
+										name="Remarks" ng-model="form1.Remarks" required focus /> <!--<textarea type="comment" class="form-control" placeholder="Type here..." name="Sucide_New_Male" ng-model="form2.Sucide_New_Male" required focus/>-->
+										<i class="ace-icon fa fa-user"></i>
+									</span>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+
+					<a class="btn btn-sm btn-primary btnSave"> Save </a> <a
+						type="submit" class="btn btn-sm btn-primary btnSubmit"
+						ng-click="Form1(form1)" data-ng-disabled="Budget.$invalid">
+						Submit </a> <a class="btn btn-sm btn-primary btnView">View </a>
+				</div>
+
+				<div class="form-group">
+					<span class="lbl col-sm-5"> </span>
+					<div class="col-sm-7"></div>
+				</div>
+
+
+			</div>
+	</div>
+
+
+
+
+</div>
+

@@ -1,0 +1,109 @@
+ <div class="row">
+      <form name="Form_1" class="form-horizontal" role="form" >
+
+					<div class="panel panel-default">
+					
+				  <div class="panel-heading">HR Information </div>
+				  <div class="panel-body">
+				  
+<!-- <table border="1" class="table table-hover">
+			<thead>
+				<tr>
+					<th>S.NO</th>
+					<th>Name</th>
+					<th>DOP</th>
+					<th>Current Designation</th>
+					<th>Contract Ref #</th>
+					<th>Contact Detail 1</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			
+					<td>1</td>
+					<td>simha</td>
+					<td>01/03/1991</td>
+					<td>DOP</td>
+					
+                   <td>#RN1236</td>
+                   <td>9012345678</td>
+                    <td><button id="2" class="btn btn-md btn-primary"
+							ng-click="view_edit_click(x.training_id, $event)">Edit</button></td>
+                  
+				</tr>
+				<tr> 
+				   <td>2</td>
+					<td>narasimha</td>
+					<td>01/03/1991</td>
+					<td>Ward Assistant</td>
+                   <td>#RN1234</td>
+                   <td>9015656345678</td>
+                   <td><button id="2" class="btn btn-md btn-primary"
+							ng-click="hr_edit_click(training_id)">Edit</button></td>
+                 </tr>
+                 <tr> 
+				   <td>3</td>
+					<td>employee</td>
+					<td>01/07/1990</td>
+					<td>Ward Assistant</td>
+                   <td>#RX777</td>
+                   <td>9015656345678</td>
+                   <td><button id="2" class="btn btn-md btn-primary"
+							ng-click="view_edit_click(x.training_id, $event)">Edit</button></td>
+                 </tr>
+
+			</tbody>
+
+		</table>-->
+		
+				<table border="1" class="table table-hover">
+			<thead>
+				<tr>
+					<th>S.NO</th>
+					<th>Name</th>
+					<th>Current Designation</th>
+					<th>DateOfAppointment</th>
+					<th>Contarct Period from</th>
+					<th>Contarct Period To</th>
+					<th>contactNo</th>
+					<th>InchargeTaluka</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="x in hr_records">
+					<td>{{$index+1}}</td>
+					<td>{{x.name}}</td>
+					<td>{{x.current_designation}}</td>
+					<td>{{x.dateOfAppointment}}</td>
+					<td>{{x.contarctPeriodfrom}}</td>
+					<td>{{x.contarctPeriodTo}}</td>
+					<td>{{x.contactNo}}</td>
+					<td>{{x.inchargeTaluka}}</td>
+					<td>
+					<button id="2" class="btn btn-md btn-primary" ng-click="hr_edit_click(x.dhc_HrInfo_id)">Edit</button>
+					</td>
+
+				</tr>
+
+			</tbody>
+
+		</table>
+		
+		
+		
+		
+		
+		
+<a href="#dhcHrModule" class="btn btn-primary" role="button"> DataEntry Hr <span class="glyphicon glyphicon-hand-right"></span></a>
+                    <div id="snackbar1">Data has submitted successfully...</div>
+	                <div id="snackbar2">Data failed to post...</div>
+				    </div>
+				
+                     
+ 
+    </div>
+</form>      
+</div>                         		

@@ -1,0 +1,269 @@
+<div class="container" style="width: 100%">
+	<div class="container" style="margin-top: 0px; width: 100%"></div>
+	<div class="row">
+		<form name="Form_1" class="form-horizontal" role="form" novalidate>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>{{title}} </b>
+				</div>
+				<div class="panel-body">
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-padding-left"
+							for="ReportingMonth">Reporting for Month and year</label>
+
+
+						<div class="col-sm-4">
+							<span class="block input-icon input-icon-right"> <select
+								ng-model="form_ReportingMonth"
+								ng-options="month for month in monthNames"
+								ng-change="changemonth(form_ReportingMonth)"
+								class="form-control">
+
+							</select>
+
+							</span>
+						</div>
+						<div class="col-sm-4">
+							<span class="block input-icon input-icon-right"> <select
+								ng-model="form_ReportingYear"
+								ng-options=" form_ReportingYear for form_ReportingYear in yearCount()"
+								ng-change="changemonth(form_ReportingMonth)"
+								class="form-control">
+
+							</select>
+
+							</span>
+						</div>
+
+
+
+						<!-- <label class="col-sm-2 control-label no-padding-right" for="FaciltyName"> Name of the PHC/CHC/TH </label> -->
+						<!-- <div class="col-sm-4">
+                        <span class="block input-icon input-icon-right">
+                        <input type="text" class="form-control"  ng-disabled="disabledemo" name="FaciltyName" ng-model="form_hospitalName" required  />
+                        </span>
+                     </div> -->
+					</div>
+
+
+					<div ng-repeat="x in records" class="col-md-12">
+						<div class="form-group">
+
+							<div ng-if="x.reportStatus =='1'">
+								<!-- <input type="checkbox" name="fancy-checkbox-success" checked
+									ng-click="selectedhospital($event,$index)" autocomplete="off" /> -->
+								<div class="[ btn-group ]">
+									<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+										<span class="[ glyphicon glyphicon-ok ]"></span>
+									</label> <label for="fancy-checkbox-default"
+										class="[ btn btn-default active ]"> <strong>
+											{{x.hospitalName }}({{x.hospitalType}}) </strong>
+									</label> <i>({{x.hospital_report.submittedby}})</i>
+								</div>
+							</div>
+							<div ng-if="x.reportStatus =='0'">
+								<!-- <input type="checkbox" name="fancy-checkbox-danger"
+									id="fancy-checkbox-danger" disabled autocomplete="off" /> -->
+								<div class="[ btn-group ]col-sm-6">
+									<label for="fancy-checkbox-danger" class="[ btn btn-danger ]">
+										<span class="glyphicon glyphicon-alert"></span> <span>
+									</span>
+									</label> <label for="fancy-checkbox-default"
+										class="[ btn btn-default active ]"> <strong>
+											{{x.hospitalName}} ({{x.hospitalType}})</strong>
+									</label> <i></i>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<b>Cumulative report for {{x.hospitalName}} </b>
+								</div>
+								<div class="panel-body">
+									<div class="form-group"
+										style="width: 100%; height: auto; overflow-x: scroll;">
+										<table cellspacing="0" cellpadding="0" border="1"
+											class="table table-hover">
+											<thead>
+												<tr>
+													<th colspan="4">Total No of SMD cases treated during
+														the month</th>
+													<th colspan="4">Total No of CMD treated during the
+														month</th>
+													<th colspan="4">Total No of Alcohol/Drug abuse Cases
+														treated during the month</th>
+													<th colspan="4">No. of cases referred to Higher
+														centers</th>
+													<th colspan="4">No. of Cases of Suicide reported</th>
+													<th colspan="4">Other Psychiatric disorders treated</th>
+												</tr>
+												<tr>
+													<th colspan="2">New Cases</th>
+													<th colspan="2">Old Cases</th>
+
+													<th colspan="2">New Cases</th>
+													<th colspan="2">Old Cases</th>
+
+													<th colspan="2">New Cases</th>
+													<th colspan="2">Old Cases</th>
+
+													<th colspan="2">During the Month</th>
+													<th colspan="2">Cumulative</th>
+													<th colspan="2">During the Month</th>
+													<th colspan="2">Cumulative</th>
+													<th colspan="2">New Cases</th>
+													<th colspan="2">Old Cases</th>
+												</tr>
+												<tr>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+													<th>Male</th>
+													<th>Female</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+
+
+													<td>{{x.hospital_report.new_smd_male}}</td>
+													<td>{{x.hospital_report.new_smd_female}}
+													</td>
+													<td>
+														{{x.hospital_report.old_smd_male}}</td>
+													<td>
+														{{x.hospital_report.old_smd_female}}</td>
+
+													<td>{{x.hospital_report.new_cmd_male}}
+													</td>
+													<td>
+														{{x.hospital_report.new_cmd_female}}</td>
+													<td>{{x.hospital_report.old_cmd_male}}
+													</td>
+													<td>{{x.hospital_report.old_cmd_female}}</td>
+
+													<td>{{x.hospital_report.new_alcohal_male}}
+													</td>
+													<td>{{x.hospital_report.new_alcohal_female}}</td>
+													<td>{{x.hospital_report.old_alcohal_male}}
+													</td>
+													<td>
+														{{x.hospital_report.old_alcohal_female}}</td>
+
+													<td>{{x.hospital_report.new_male_reffered_to_highercenters}}</td>
+													<td>{{x.hospital_report.new_female_reffered_to_highercenters}}</td>
+													<td>{{x.hospital_report.old_male_reffered_to_highercenters}}</td>
+													<td>{{x.hospital_report.old_female_reffered_to_highercenters}}</td>
+
+													<td>
+														{{x.hospital_report.new_male_suicidecases}}</td>
+													<td>{{x.hospital_report.new_female_suicidecases}}</td>
+													<td>{{x.hospital_report.old_male_suicidecases}}
+													</td>
+													<td>{{x.hospital_report.old_female_suicidecases}}</td>
+
+													<td>{{x.hospital_report.new_psychiatricdisorders_male}}
+													</td>
+													<td>{{x.hospital_report.new_psychiatricdisorders_female}}</td>
+													<td>{{x.hospital_report.old_psychiatricdisorders_male}}
+													</td>
+													<td>
+														{{x.hospital_report.old_psychiatricdisorders_female}}</td>
+
+
+
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<!-- </fieldset> -->
+
+
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+
+
+
+					<a href="#reportForms" class="btn btn-md btn-primary" role="button">
+						<span class="glyphicon glyphicon-arrow-left"></span> Back
+					</a>
+
+					<!-- button code for chart diagram
+        	<button type="button" class="btn btn-md btn-primary" data-toggle="toggle" ng-click="chartFunction()" > 
+        	<span class="glyphicon glyphicon-stats"></span> Chart Diagram
+        	</button> -->
+
+					<button type="button" class="btn btn-md btn-primary"
+						ng-csv="tableData" csv-header="getHeader()"
+						filename="{{form_hospitalName}}_{{ form_ReportingMonth}}_{{ form_ReportingYear }}.csv">
+						<span class="glyphicon glyphicon-download-alt"></span> Download
+						Excel
+					</button>
+
+				</div>
+			</div>
+
+
+
+			<!--  </fieldset> -->
+		</form>
+		<!-- bar chart code starts here 
+   			
+            <div class="panel panel-default"  ng-if="show">
+            <div class="panel-heading"><b>Bar Chart </b></div>
+            <div class="panel-body">
+               
+               <canvas id="bar" class="chart chart-bar"
+               chart-data="data" chart-labels="labels"
+               chart-series="series" chart-colors="ColorBar"
+               chart-options="options" chart-click="clickme" chart-hover="hoverme"
+               chart-dataset-override="DataSetOverride">
+               </canvas>
+               
+               
+            </div>
+         </div>    
+       
+          bar chart code ends here
+          
+          -->
+
+
+
+	</div>
+
+	<!-- row class ends here  -->
+
+</div>

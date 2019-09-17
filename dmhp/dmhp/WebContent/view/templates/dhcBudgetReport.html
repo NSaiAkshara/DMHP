@@ -1,0 +1,197 @@
+<div class="row">
+ <form name="Form_1" class="form-horizontal" role="form">
+<div class="tab-content">	
+	<div class="panel panel-default">
+					
+				  <div class="panel-heading">Buget Expense details </div>
+				  <div class="panel-body">
+				   <div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right"
+									for="ReportingMonth">Reporting for Month</label>		
+								<div class="col-sm-2" ng-if="doctorType1 != 'dlp' ">
+									<span class="block input-icon input-icon-right"> <select
+										ng-model="form_ReportingMonth"
+										ng-options="month for month in monthNames"
+										ng-change="changemonthforbudgetData(form_ReportingMonth,form_ReportingYear)"
+										class="form-control">
+
+									</select>
+
+									</span>
+								</div>						
+								
+								<div class="col-sm-2" ng-if="doctorType1 != 'dlp' ">
+									<span class="block input-icon input-icon-right"> <select
+										ng-model="form_ReportingYear"
+										ng-options=" form_ReportingYear for form_ReportingYear in yearCount()"
+										ng-change="changemonthforbudgetData(form_ReportingMonth,form_ReportingYear)"
+										class="form-control">
+
+									</select>
+
+									</span>
+								</div>
+								<label class="col-sm-2 control-label no-padding-right"
+									for="ReporingDate"> Date of reporting</label>
+								<div class="col-sm-4">
+									<span class="block input-icon input-icon-right"> 
+									<input type="text" ng-disabled="disabledemo2"  
+									 class="form-control" value="{{ date | date: 'dd-MM-yyyy' }}" ng-model="form_ReportingDate">										
+									</span>
+								</div>
+								
+								
+							</div>
+							<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right" >Allocated Budget Amount By State </label>
+						  <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  name="allocated_budget_amount" ng-disabled="disabledemo2" ng-model="allocated_budget_amount" required focus/>
+                            </span>
+                        </div>
+                    </div>		
+				  
+				  
+				  
+				    <div align="center" class="form-group" >
+				
+<table style="width: 60%; " cellspacing="0" cellpadding="0" border="1" class="table table-hover" >
+
+<thead>
+
+<tr>
+    <th >Amount spent</th>
+    
+    <th>During the month</th>
+    <th>Cumulative</th>
+	<th>% spent</th>
+</tr>
+</thead>
+<tbody>
+ <tr>
+    <td>Salary</td>
+    <td> <input type="number"  class="form-control" name="DM_Salary" ng-disabled="disablefields_1" ng-model="DM_Salary" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Salary" ng-disabled="disablefields" ng-model="Cumulative_Salary" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Salary" ng-disabled="disablefields"  ng-model="Percentage_Salary"   required focus/></td>
+    
+	</tr>
+	 <tr>
+    <td>Infrastructure</td>
+    <td> <input type="number"  class="form-control" name="DM_Infrastructure" ng-disabled="disablefields_1" ng-model="DM_Infrastructure" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Infrastructure" ng-disabled="disablefields" ng-model="Cumulative_Infrastructure" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Infrastructure" ng-disabled="disablefields" ng-model="Percentage_Infrastructure" required focus/></td>
+	</tr>
+	 <tr>
+    <td>Training </td>
+    <td> <input type="number"  class="form-control" name="DM_Training" ng-disabled="disablefields_1" ng-model="DM_Training" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Training" ng-disabled="disablefields" ng-model="Cumulative_Training" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Training" ng-disabled="disablefields" ng-model="Percentage_Training" required focus/></td>
+    
+	</tr>
+	 <tr>
+    <td>IEC </td>
+    <td> <input type="number"  class="form-control" name="DM_IEC" ng-disabled="disablefields_1" ng-model="DM_IEC" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_IEC" ng-disabled="disablefields" ng-model="Cumulative_IEC" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_IEC" ng-disabled="disablefields" ng-model="Percentage_IEC" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+    <td>Targeted interventions</td>
+    <td> <input type="number"  class="form-control" name="DM_TI" ng-disabled="disablefields_1" ng-model="DM_TI" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_TI" ng-disabled="disablefields" ng-model="Cumulative_TI" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_TI" ng-disabled="disablefields" ng-model="Percentage_TI" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+    <td>Drugs</td>
+    <td> <input type="number"  class="form-control" name="DM_Drugs" ng-disabled="disablefields_1" ng-model="DM_Drugs" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Drugs" ng-disabled="disablefields" ng-model="Cumulative_Drugs" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Drugs" ng-disabled="disablefields" ng-model="Percentage_Drugs" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+    <td>Equipments </td>
+    <td> <input type="number"  class="form-control" name="DM_Equipments" ng-disabled="disablefields_1" ng-model="DM_Equipments" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Equipments" ng-disabled="disablefields" ng-model="Cumulative_Equipments" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Equipments" ng-disabled="disablefields" ng-model="Percentage_Equipments" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+    <td>Operational expenses</td>
+    <td> <input type="number"  class="form-control" name="DM_OperationalExps" ng-disabled="disablefields_1" ng-model="DM_OperationalExps" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_OperationalExps" ng-disabled="disablefields" ng-model="Cumulative_OperationalExps" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_OperationalExps" ng-disabled="disablefields"  ng-model="Percentage_OperationalExps" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+    <td>Ambulatory services</td>
+    <td> <input type="number"  class="form-control" name="DM_AmbulatorySrv" ng-disabled="disablefields_1" ng-model="DM_AmbulatorySrv" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_AmbulatorySrv" ng-disabled="disablefields" ng-model="Cumulative_AmbulatorySrv" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_AmbulatorySrv" ng-disabled="disablefields" ng-model="Percentage_AmbulatorySrv" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+    <td>Miscellaneous / Travel / Contingency</td>
+    <td> <input type="number"  class="form-control" name="DM_Miscellaneous" ng-disabled="disablefields_1" ng-model="DM_Miscellaneous" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Miscellaneous"ng-disabled="disablefields" ng-model="Cumulative_Miscellaneous" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Miscellaneous" ng-disabled="disablefields" ng-model="Percentage_Miscellaneous" required focus/></td>
+    
+	</tr>
+	
+	 <tr>
+	<td>Total</td>
+    <td> <input type="text"  class="form-control" name="DM_Total" ng-disabled="disablefields" ng-model="DM_Total" required focus/></td>
+    <td><input type="text"  class="form-control" name="Cumulative_Total" ng-disabled="disablefields" ng-model="Cumulative_Total" required focus/></td>
+	<td><input type="text"  class="form-control" name="Percentage_Total" ng-disabled="disablefields" ng-model="Percentage_Total" required focus/></td></tr>
+	 <tr>
+	<td>Balance remaining</td>
+    <td colspan="3"> <input type="text"  class="form-control" name="BalanceRemain" ng-disabled="disablefields"  ng-model="BalanceRemain" required focus/></td>
+	</tr>
+</tbody>
+</table>
+				    </div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right" for="DLO">Submitted by(Name of DLO) </label>
+						  <div class="col-sm-4">
+                           <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"  name="DLO" ng-disabled="disabledemo2" ng-model="submitted_DLO_name" required focus/>
+                            </span>
+                        </div>
+                    </div>		  
+				  </div>
+                  
+					  </div>
+					 	<div class="panel panel-default">
+				  <div class="panel-heading">Remarks </div>
+				  <div class="panel-body">
+				  <div class="form-group">
+                      
+                         <div class="col-sm-12">
+                           <span class="block input-icon input-icon-right">
+						     <input type="text" class="form-control" placeholder="Type here..." name="Remarks" ng-disabled="disablefields_1" ng-model="form_Remarks" required focus/>
+                                <i class="ace-icon fa fa-user"></i>
+                            </span>
+                        </div>
+                    </div>
+				    </div>
+				    </div>
+	<button type="submit"  data-ng-disabled= "submitDisabledbutton" ng-click="submitClick(1)" ng-model="flag_status" ng-init="flag_status = 1" ng-value="1" class=" btn btn-md btn-primary"   > <span class="glyphicon glyphicon-new-window"></span> Save </button>
+	<button type="submit"  data-ng-disabled= "submitDisabledbutton" ng-click="submitClick(2)" ng-model="flag_status" ng-init="flag_status = 2" ng-value="2" class=" btn btn-md btn-primary"   > <span class="glyphicon glyphicon-new-window"></span> Submit </button>
+	<div id="snackbar">Data has saved successfully...</div>
+	<div id="snackbar1">Data has submitted successfully...</div>
+	<div id="snackbar2">Data failed to post...</div>
+                   <div class="form-group">
+                                <span class="lbl col-sm-5"> </span>
+                                <div class="col-sm-7">      
+                                </div>
+                    </div>
+    </div>
+	</div>	   
+</div> 
+</form>                               		

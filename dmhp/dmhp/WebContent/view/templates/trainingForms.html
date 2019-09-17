@@ -1,0 +1,314 @@
+<div class="container">
+	<div class="container" style="margin-top: 0px; width: 100%;"></div>
+	<div class="row">
+		<form name="Form_1" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
+		
+			<div class="panel panel-default">
+
+				<div class="panel-heading">Training module registration</div>
+				<fieldset ng-disabled="event_status==1">
+					<div class="panel-body">
+
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right"
+								for="Name_event">Name of the event </label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <select
+									name="Name_event" id="Name_event"
+									ng-model="Training_Name_event" ng-change="changeEvent(Training_Name_event)" class="form-control" required
+									focus>
+										<option selected="" value="">(Please select a event)</option>
+										<option value="Training">Training</option>
+										<option value="Targetted intervention">Targetted
+											intervention</option>
+										<option value="Insection of facilitites">Inspection of
+											facilitites</option>
+										<option value="Manochaitanya">IEC Activities</option>
+										<option value="Specify Other">Specify Other</option>
+								</select>
+
+								</span>
+							</div>
+
+							<label class="col-sm-2 control-label no-padding-right"
+								for="SpecifyOtherevent">Specify Other</label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <input
+									type="text" class="form-control" id="SpecifyOtherevent"
+									name="SpecifyOtherevent" ng-model="Training_SpecifyOtherevent"
+									required focus ng-disabled="eventActForSpecifyOtherevent" />
+
+								</span>
+							</div>
+
+						</div>
+
+
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right"
+								for="Event_fromDate">Date of event (From)</label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <input
+									type="date" class="form-control" id="Event_fromDate"
+									value=" " name="Event_fromDate"
+									ng-model="Training_Event_fromDate" required focus ng-disabled="eventActForEvent_fromDate" />
+
+								</span>
+							</div>
+
+							<label class="col-sm-2 control-label no-padding-right"
+								for="Event_ToDate">Date of event (To)</label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <input
+									type="date" class="form-control" id="Event_ToDate"
+									value=" " name="Event_ToDate"
+									ng-model="Training_Event_ToDate" required focus ng-disabled="eventActForEvent_ToDate"/>
+
+								</span>
+							</div>
+
+						</div>
+
+
+						<div class="form-group">
+
+							<label class="col-sm-2 control-label no-padding-right"
+								for="Targetgroup">Target group</label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <select
+									class="form-control" name="Targetgroup" id="Targetgroup"
+									ng-model="Training_Targetgroup" required focus ng-disabled="eventActForTargetgroup">
+										<option selected="" value="">(Please select a target
+											group)</option>
+										<option value="Elected Representatives">Elected
+											Representatives</option>
+										<option value="Faith Healers">Faith Healers</option>
+										<option value="Women & Child development staff">Women
+											& Child development staff</option>
+										<option value="Police">Police</option>
+										<option value="KSAPS Staff">KSAPS Staff</option>
+
+										<option value="Medical officers">Medical officers</option>
+										<option value="Nursing Staff">Nursing Staff</option>
+										<option value="Pharmacist">Pharmacist</option>
+										<option value="ANM/Health workers">ANM/Health workers</option>
+										<option value="Health Assistants">Health Assistants</option>
+
+										<option value="ASHA">ASHA</option>
+										<option value="Anganwadi">Anganwadi</option>
+										<option value="Students(School/College)">Students(School/College)</option>
+										<option value="Other Specify">Other Specify</option>
+
+								</select>
+								</span>
+							</div>
+
+							<label class="col-sm-2 control-label no-padding-right"
+								for="NoOfParticipants">Number of participants/Patient</label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <input
+									type="number" class="form-control" id="NoOfParticipants"
+									name="NoOfParticipants" ng-model="Training_NoOfParticipants"
+									required focus ng-disabled="eventActForNoOfParticipants" />
+								</span>
+							</div>
+
+
+						</div>
+
+						<div class="form-group">
+
+
+							<label class="col-sm-2 control-label no-padding-right"
+								for="NameOf_Facility">Name of the facility</label>
+
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <input
+									type="text" class="form-control" id="NameOf_Facility"
+									name="NameOf_Facility" ng-model="Training_NameOf_Facility"
+									required focus ng-disabled="eventActForNameOf_Facility" />
+
+								</span>
+							</div>
+
+							<label class="col-sm-2 control-label no-padding-right"
+								for="BriefReport">Brief report (about 150-200 words)</label>
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <textarea
+										type="text" class="form-control" name="BriefReport"
+										ng-model="Training_BriefReport" required focus ng-disabled="eventActForBriefReport"> </textarea>
+
+								</span>
+							</div>
+							
+							<label class="col-sm-2 control-label no-padding-right"
+								for="ResourcesUsed">Resource Material Used</label>
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"><select
+									class="form-control" name="ResourcesUsed" id="ResourcesUsed"
+									ng-model="Training_ResourcesUsed" required focus ng-disabled="eventActForResourcesUsed">
+										<option selected="" value="">(Please select a resource material)</option>
+										<option value="Pamphlets">Pamphlets</option>
+										<option value="Posters">Posters</option>
+										<option value="Brochures">Brochures</option>
+										<option value="Banners">Banners</option>
+										<option value="Handbook">Handbook</option>
+										<option value="Handouts">Handouts</option>										
+								</select>
+								</span>
+							</div>
+                            <br/><br/><br/><br/>
+							<label class="col-sm-2 control-label no-padding-right"
+								for="BriefReport">Name of the team members</label>
+							<div class="col-sm-4">
+								<span class="block input-icon input-icon-right"> <textarea
+										type="text" class="form-control" name="TeamMembers"
+										ng-model="Training_TeamMembers" required focus  ng-disabled="eventActForTeamMembers"> </textarea>
+
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+				<!--<div class="col-sm-4">
+			        <span class="block input-icon input-icon-right"><input type='file' name='file1' id='file1'><br/></span> 
+			        <span class="block input-icon input-icon-right"><input type='file' name='file1' id='file1'><br/></span>
+			        <span class="block input-icon input-icon-right">
+			        <input type="file" id="file1" name="file" multiple ng-files="getTheFiles($files)" />
+			        <br/></span>
+			      <!--<span class="block input-icon input-icon-right"> <input type="file" id="file1" name="file" multiple
+            ng-files="getTheFiles($files)" /><br/></span> -->
+            
+         <!-- <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)"  /> 
+             <div ng-repeat="step in stepsModel">
+               <img class="thumb" ng-src="{{step}}" />
+              </div> -->
+					
+					</div>	
+			 </form>
+			 <form id="imageform" ng-submit="submitimageForm()"  action="http://localhost:8080/dmhp/api/hospitals/1/training/postimg" method="post" enctype="multipart/form-data">	  
+	          <input name="file" id="filename" type="file" multiple /><br><br>       
+             </form>
+             <form id="imageform" ng-submit="submitimageForm()"  action="http://localhost:8080/dmhp/api/hospitals/1/training/postimg" method="post" enctype="multipart/form-data">	  
+	          <input name="file" id="filename" type="file" multiple /><br><br>       
+             </form>
+             <form id="imageform" ng-submit="submitimageForm()"  action="http://localhost:8080/dmhp/api/hospitals/1/training/postimg" method="post" enctype="multipart/form-data">	  
+	          <input name="file" id="filename" type="file" multiple /><br><br>       
+             </form>
+
+					</div>
+					
+				</fieldset>
+			</div>
+			
+			
+			<div class="form-group">
+						<span class="lbl col-sm-5"> </span>
+						<div class="col-sm-7">
+							<button type="submit" ng-style="margin-left: 560px"
+								class="width-35 pull-right btn btn-sm btn-primary"
+								ng-click="formSubmit1()">Submit</button>
+						</div>
+					</div>
+			
+			
+			
+			
+			
+			
+	</div>
+	<div class="alert alert-success " ng-show="form_submitted">
+		<strong>Form submitted successfully !!</strong>
+
+	</div>
+
+	<div class="alert alert-danger" " ng-show="form_not_submitted">
+		<strong>Form not submitted </strong>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">ALL EVENTS</div>
+
+	<div class="panel-body">
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label no-padding-left"
+				for="ReportingMonth">Reporting for Month and year</label>
+
+
+			<div class="col-sm-4">
+				<span class="block input-icon input-icon-right"> <select
+					ng-model="form_ReportingMonth"
+					ng-options="month for month in monthNames"
+					ng-change="changemonth(form_ReportingMonth)" class="form-control">
+
+				</select>
+
+				</span>
+			</div>
+			<div class="col-sm-4">
+				<span class="block input-icon input-icon-right"> <select
+					ng-model="form_ReportingYear"
+					ng-options=" form_ReportingYear for form_ReportingYear in yearCount()"
+					ng-change="changemonth(form_ReportingMonth)" class="form-control">
+
+				</select>
+
+				</span>
+			</div>
+
+
+
+		</div>
+		<br /> <br />
+		<table border="1" class="table table-hover">
+			<thead>
+				<tr>
+					<th>S.NO</th>
+					<th>Name of the event</th>
+					<th>From Date</th>
+					<th>To Date</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="x in training_records">
+					<td>{{$index+1}}</td>
+					<td>{{x.no_of_events}}</td>
+					<td>{{x.event_from}}</td>
+					<td>{{x.event_to}}</td>
+					<td>
+						<button id="1" class="btn btn-md btn-primary"
+							ng-click="view_edit_click(x.training_id, $event)">View</button>
+						<button id="2" class="btn btn-md btn-primary"
+							ng-click="view_edit_click(x.training_id, $event)">Edit</button>
+						<button id="3" class="btn btn-md btn-primary" ng-hide="true"
+							ng-click="delete_click(x.training_id, $event)">Delete</button>
+					</td>
+
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+</div>
+
+
+</div>
+
+<!-- </div>        
+   
+
+</div>
+</body>
+</html>                                		 -->

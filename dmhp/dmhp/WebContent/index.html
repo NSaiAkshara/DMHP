@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!--Bootstrap CDN lnk-->
+
+<!--Angular1.x CDN lnk-->
+
+<script src="controller/externalJsFiles/angular.js"></script>
+
+
+<script src="controller/externalJsFiles/angular-route.js"></script>
+
+
+
+
+
+<!-- add external JS files -->
+<script src= "controller/d3.js"></script>
+<script src="controller/MainController.js"></script>
+<script src="controller/PatientDashboardController.js"></script>
+<script src="controller/PatientController.js"></script>
+<script src="controller/TrainingController.js"></script>
+<script src="controller/BudgetController.js"></script>
+<script src="controller/HrController.js"></script>
+<script src="controller/StateDashboardController.js"></script>
+	
+<!-- <script src="controller/TrainingController.js"></script> -->
+
+
+<!--css files-->
+<link rel="stylesheet" href="view/css/index.css">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport">
+<title>DMHP</title>
+<link rel="stylesheet"
+	href="controller/externalJsFiles/bootstrap.min.css"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="controller/externalJsFiles/bootstrap-theme.min.css"
+	crossorigin="anonymous">
+<script src="controller/externalJsFiles/jquery.min.js"></script>
+<script src="controller/externalJsFiles/bootstrap.min.js"
+	crossorigin="anonymous"></script>
+
+
+
+<!-- report generation -->
+<script src="controller/externalJsFiles/angular-sanitize.js"></script>
+
+<script src="controller/externalJsFiles/ng-csv.js"></script>
+<!-- notification messages -->
+<link rel="stylesheet"
+	href="controller/externalJsFiles/snackbar.css"
+	crossorigin="anonymous">
+
+</head>
+<body ng-app="MainModule">
+	<nav id="myNavbar"
+		class="navbar navbar-default navbar-inverse navbar-fixed-top"
+		role="navigation">
+
+		<div>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbarCollapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class=" active navbar-brand" href="#/login">DMHP Data
+					Management</a>
+				<!--  <a class=" active navbar-brand" href="#/Dashboard">Dashboard</a> -->
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="nav navbar-nav">
+
+					<li class="" ng-show="login_not_submitted == 1"><a
+						href="#reportForms_new">Patient Details</a></li>
+					<li class="" ng-show="login_not_submitted == 1"
+						ng-if="doctorType1 == 'dhc'"><a href="#trainingForms">Training
+							& Events</a></li>
+					<li class="" ng-if="doctorType1 == 'shc'"><a
+						href="#stateReport">DashBoard</a></li>
+					<li class="" ng-show="login_not_submitted == 1"
+						ng-if="doctorType1 == 'dhc'"><a href="#stateReport1">DashBoard</a></li>
+					<li class="" ng-show="login_not_submitted == 1"
+						ng-if="doctorType1 == 'dhc'"><a href="#dhcBudgetReport1">DHC_BUDGET
+							REPORT</a></li>
+					<li class="" ng-if="doctorType1 == 'shc'"><a
+						href="#stateBudgetReport">stateBudgetReport</a></li>
+					<li class="" ng-if="doctorType1 == 'shc'"><a
+						href="#dashboard_state">Budgetdashboard_siddu</a></li>
+					<li class="" ng-show="login_not_submitted == 1"
+						ng-if="doctorType1 == 'dhc'"><a href="#dhcHrModule">HR
+							Module</a></li>
+					<!--<li class="" ng-show="login_not_submitted == 1" ng-if="doctorType1 == 'shc'" ><a href="#stateBudgetDashboardr">stateBudgetDashboardr</a></li>-->
+				</ul>
+				
+	
+				
+				
+				<ul class="nav navbar-nav pull-right ">
+
+					<a href="#/logout" class="btn navbar-brand" role="button">LogOut
+						<span class="glyphicon glyphicon-log-out"></span>
+					</a>
+
+
+					<!--  <li><button type="button" class="btn navbar-btn btn-primary" ng-click="logout()" >Basic Button</button></li> -->
+
+				</ul>
+				<ul class="nav navbar-nav pull-right ">
+
+					<a href="" class="btn navbar-brand" role="button">Login :
+						{{doctorName}}</a>
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<ng-view></ng-view>
+
+
+	</div>
+
+
+	<diV>
+		<footer>
+			<hr>
+			<div class=" container text-right">
+				<p>IIIT-B| © Copyright 2016, All Rights Reserved</p>
+			</div>
+		</footer>
+	</diV>
+</body>
+</html>
